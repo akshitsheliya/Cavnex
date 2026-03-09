@@ -83,7 +83,7 @@ export default function ContactForm() {
             value={formData.phone}
             onChange={handleChange}
             className="w-full px-4 py-3 bg-dark-800 border border-white/10 rounded-lg text-white focus:border-primary-500 focus:outline-none transition-colors"
-            placeholder="+91 98765 43210"
+            placeholder="+91 87992 63376"
           />
         </div>
 

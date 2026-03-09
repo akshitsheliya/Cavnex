@@ -109,7 +109,7 @@ export default function Footer() {
             <h3 className="text-white font-semibold text-lg mb-4">Contact</h3>
             <ul className="space-y-3 text-gray-400">
               <li>📧 hello@cavnex.com</li>
-              <li>📱 +91 98765 43210</li>
+              <li>📱 +91 87992 63376</li>
               <li>📍 Mumbai, India</li>
             </ul>
           </motion.div>

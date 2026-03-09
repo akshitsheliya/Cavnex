@@ -14,7 +14,7 @@ export default function Contact() {
     {
       icon: "📱",
       title: "Phone",
-      value: "+91 98765 43210",
+      value: "+91 87992 63376",
       link: "tel:+919876543210",
     },
     {
