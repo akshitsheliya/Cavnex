@@ -1,0 +1,38 @@
+export const testimonials = [
+  {
+    id: 1,
+    name: "Rahul Sharma",
+    role: "Cafe Owner",
+    company: "Cafe Delight",
+    image: "👨‍💼",
+    rating: 5,
+    text: "CavNex Studio transformed my cafe business with a stunning website. Online orders increased by 150%! Highly recommended.",
+  },
+  {
+    id: 2,
+    name: "Priya Patel",
+    role: "Restaurant Manager",
+    company: "Royal Dining",
+    image: "👩‍💼",
+    rating: 5,
+    text: "The team delivered exactly what we needed. Professional, responsive, and the website looks amazing on all devices.",
+  },
+  {
+    id: 3,
+    name: "Amit Kumar",
+    role: "Startup Founder",
+    company: "TechVenture",
+    image: "👨‍💻",
+    rating: 5,
+    text: "Best investment for our startup! The combo package gave us a professional presence at an affordable price.",
+  },
+  {
+    id: 4,
+    name: "Sneha Reddy",
+    role: "Freelance Designer",
+    company: "Creative Studio",
+    image: "👩‍🎨",
+    rating: 5,
+    text: "My portfolio website has helped me land multiple high-paying clients. The design is exactly what I envisioned!",
+  },
+];
