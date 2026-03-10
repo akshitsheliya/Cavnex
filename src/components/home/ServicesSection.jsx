@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import SectionTitle from "../common/SectionTitle";
 import ServiceCard from "../common/ServiceCard";
 import { services } from "../../data/services";
+import Button from "../common/Button";
 
 const containerVariants = {
   hidden: {},
@@ -42,14 +44,16 @@ export default function ServicesSection() {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8"
         >
           {services.map((service) => (
-            <ServiceCard
-              key={service.id}
-              icon={service.icon}
-              title={service.title}
-              description={service.description}
-              features={service.shortFeatures}
-              link={service.link}
-            />
+            <div key={service.id} id={`service-${service.id}`}>
+              <ServiceCard
+                icon={service.icon}
+                title={service.title}
+                description={service.description}
+                features={service.shortFeatures}
+                link={service.link}
+                serviceId={service.id}
+              />
+            </div>
           ))}
         </motion.div>
 
@@ -58,17 +62,12 @@ export default function ServicesSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
-          className="mt-12 sm:mt-16 text-center"
+          className="mt-10 sm:mt-12 md:mt-16 text-center"
         >
-          <p className="text-gray-400 text-sm sm:text-base">
-            Not sure which service is right for you?{" "}
-            <a
-              href="/contact"
-              className="text-primary-400 hover:text-primary-300 font-semibold transition-colors"
-            >
-              Let's discuss your project
-            </a>
+          <p className="text-gray-400 text-sm sm:text-base mb-6">
+            Want to see all services in detail?
           </p>
+          <Button to="/services">View All Services</Button>
         </motion.div>
       </div>
     </section>

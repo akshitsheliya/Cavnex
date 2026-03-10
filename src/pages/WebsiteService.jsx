@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { fadeInUp } from "../utils/animations";
 import SectionTitle from "../components/common/SectionTitle";
 import PricingCard from "../components/common/PricingCard";
@@ -29,6 +29,7 @@ const cardVariants = {
 };
 
 export default function WebsiteService() {
+  const navigate = useNavigate();
   const service = services.find((s) => s.id === "website");
   const ServiceIcon = service.icon;
 
@@ -42,7 +43,7 @@ export default function WebsiteService() {
           className="mb-6 sm:mb-8"
         >
           <Link
-            to="/#services"
+            to="/services"
             className="inline-flex items-center gap-2 text-gray-400 hover:text-primary-400 transition-colors text-sm sm:text-base group"
           >
             <HiArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
@@ -207,7 +208,7 @@ export default function WebsiteService() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
             <Button to="/contact">Start Your Project</Button>
-            <Button to="/#services" variant="secondary">
+            <Button to="/services" variant="secondary">
               View Other Services
             </Button>
           </div>

@@ -1,68 +1,23 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { HiMenu, HiX } from "react-icons/hi";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("");
   const location = useLocation();
-  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
-
-      if (location.pathname === "/") {
-        const sections = ["services"];
-        const scrollPosition = window.scrollY + 100;
-
-        for (const section of sections) {
-          const element = document.getElementById(section);
-          if (element) {
-            const offsetTop = element.offsetTop;
-            const offsetHeight = element.offsetHeight;
-
-            if (
-              scrollPosition >= offsetTop &&
-              scrollPosition < offsetTop + offsetHeight
-            ) {
-              setActiveSection(section);
-              return;
-            }
-          }
-        }
-
-        if (window.scrollY < 300) {
-          setActiveSection("home");
-        } else {
-          setActiveSection("");
-        }
-      }
     };
-
     window.addEventListener("scroll", handleScroll);
-    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [location.pathname]);
+  }, []);
 
   useEffect(() => {
     setIsOpen(false);
-
-    if (location.pathname === "/") {
-      if (location.hash === "#services") {
-        setTimeout(() => {
-          const element = document.getElementById("services");
-          if (element) {
-            element.scrollIntoView({ behavior: "smooth" });
-          }
-        }, 100);
-      }
-      setActiveSection(location.hash === "#services" ? "services" : "home");
-    } else {
-      setActiveSection(location.pathname);
-    }
   }, [location]);
 
   useEffect(() => {
@@ -76,43 +31,19 @@ export default function Navbar() {
     };
   }, [isOpen]);
 
-  const handleServicesClick = (e) => {
-    e.preventDefault();
-
-    if (location.pathname === "/") {
-      const element = document.getElementById("services");
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
-    } else {
-      navigate("/#services");
-    }
-    setIsOpen(false);
-  };
-
   const navLinks = [
-    { name: "Home", path: "/", id: "home" },
-    { name: "Services", path: "/#services", id: "services", isHash: true },
-    { name: "Projects", path: "/projects", id: "/projects" },
-    { name: "Community", path: "/community", id: "/community" },
-    { name: "Contact", path: "/contact", id: "/contact" },
+    { name: "Home", path: "/" },
+    { name: "Services", path: "/services" },
+    { name: "Projects", path: "/projects" },
+    { name: "Community", path: "/community" },
+    { name: "Contact", path: "/contact" },
   ];
 
-  const isActive = (link) => {
-    if (
-      link.id === "home" &&
-      location.pathname === "/" &&
-      activeSection === "home"
-    ) {
-      return true;
+  const isActive = (path) => {
+    if (path === "/") {
+      return location.pathname === "/";
     }
-    if (link.id === "services" && activeSection === "services") {
-      return true;
-    }
-    if (!link.isHash && location.pathname === link.path) {
-      return true;
-    }
-    return false;
+    return location.pathname.startsWith(path);
   };
 
   return (
@@ -143,41 +74,22 @@ export default function Navbar() {
 
           <div className="hidden lg:flex items-center space-x-6 xl:space-x-8">
             {navLinks.map((link) => (
-              <div key={link.name} className="relative">
-                {link.isHash ? (
-                  <button
-                    onClick={handleServicesClick}
-                    className={`transition-colors relative group text-sm xl:text-base ${
-                      isActive(link)
-                        ? "text-white"
-                        : "text-gray-300 hover:text-white"
-                    }`}
-                  >
-                    {link.name}
-                    <span
-                      className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-primary-500 to-purple-600 transition-all duration-300 ${
-                        isActive(link) ? "w-full" : "w-0 group-hover:w-full"
-                      }`}
-                    />
-                  </button>
-                ) : (
-                  <Link
-                    to={link.path}
-                    className={`transition-colors relative group text-sm xl:text-base ${
-                      isActive(link)
-                        ? "text-white"
-                        : "text-gray-300 hover:text-white"
-                    }`}
-                  >
-                    {link.name}
-                    <span
-                      className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-primary-500 to-purple-600 transition-all duration-300 ${
-                        isActive(link) ? "w-full" : "w-0 group-hover:w-full"
-                      }`}
-                    />
-                  </Link>
-                )}
-              </div>
+              <Link
+                key={link.name}
+                to={link.path}
+                className={`transition-colors relative group text-sm xl:text-base ${
+                  isActive(link.path)
+                    ? "text-white"
+                    : "text-gray-300 hover:text-white"
+                }`}
+              >
+                {link.name}
+                <span
+                  className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-primary-500 to-purple-600 transition-all duration-300 ${
+                    isActive(link.path) ? "w-full" : "w-0 group-hover:w-full"
+                  }`}
+                />
+              </Link>
             ))}
             <Link to="/contact">
               <motion.button
@@ -219,39 +131,21 @@ export default function Navbar() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.08 }}
                   >
-                    {link.isHash ? (
-                      <button
-                        onClick={handleServicesClick}
-                        className={`block w-full text-left py-3 text-lg transition-colors border-b border-white/10 ${
-                          isActive(link)
-                            ? "text-primary-400 font-semibold"
-                            : "text-gray-300 hover:text-white"
-                        }`}
-                      >
-                        <span className="flex items-center justify-between">
-                          {link.name}
-                          {isActive(link) && (
-                            <span className="w-2 h-2 bg-primary-400 rounded-full" />
-                          )}
-                        </span>
-                      </button>
-                    ) : (
-                      <Link
-                        to={link.path}
-                        className={`block py-3 text-lg transition-colors border-b border-white/10 ${
-                          isActive(link)
-                            ? "text-primary-400 font-semibold"
-                            : "text-gray-300 hover:text-white"
-                        }`}
-                      >
-                        <span className="flex items-center justify-between">
-                          {link.name}
-                          {isActive(link) && (
-                            <span className="w-2 h-2 bg-primary-400 rounded-full" />
-                          )}
-                        </span>
-                      </Link>
-                    )}
+                    <Link
+                      to={link.path}
+                      className={`block py-3 text-lg transition-colors border-b border-white/10 ${
+                        isActive(link.path)
+                          ? "text-primary-400 font-semibold"
+                          : "text-gray-300 hover:text-white"
+                      }`}
+                    >
+                      <span className="flex items-center justify-between">
+                        {link.name}
+                        {isActive(link.path) && (
+                          <span className="w-2 h-2 bg-primary-400 rounded-full" />
+                        )}
+                      </span>
+                    </Link>
                   </motion.div>
                 ))}
               </div>
@@ -261,11 +155,7 @@ export default function Navbar() {
                 transition={{ delay: 0.4 }}
                 className="mt-6"
               >
-                <Link
-                  to="/contact"
-                  className="block"
-                  onClick={() => setIsOpen(false)}
-                >
+                <Link to="/contact" className="block">
                   <button className="btn-primary w-full">Get Started</button>
                 </Link>
               </motion.div>

@@ -5,6 +5,7 @@ import Footer from "./components/layout/Footer";
 import Loader from "./components/layout/Loader";
 import ScrollToTop from "./components/layout/ScrollToTop";
 import Home from "./pages/Home";
+import Services from "./pages/Services";
 import WebsiteService from "./pages/WebsiteService";
 import AppService from "./pages/AppService";
 import ComboService from "./pages/ComboService";
@@ -34,6 +35,7 @@ function App() {
         <main className="w-full">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/services" element={<Services />} />
             <Route path="/services/website" element={<WebsiteService />} />
             <Route path="/services/app" element={<AppService />} />
             <Route path="/services/combo" element={<ComboService />} />

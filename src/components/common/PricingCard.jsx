@@ -1,19 +1,41 @@
 import { motion } from "framer-motion";
-import { scaleIn } from "../../utils/animations";
-import Button from "./Button";
+import { useNavigate } from "react-router-dom";
 import { HiCheck } from "react-icons/hi";
 
+const cardVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.35,
+      ease: "easeOut",
+    },
+  },
+};
+
 export default function PricingCard({
+  id,
   plan,
   price,
   features,
   popular = false,
   link,
 }) {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (link.startsWith("/services/")) {
+      navigate(link, { state: { fromPricing: true, pricingId: id } });
+    } else {
+      navigate(link);
+    }
+  };
+
   return (
     <motion.div
-      {...scaleIn}
-      className={`card-gradient rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-8 shadow-xl relative ${
+      variants={cardVariants}
+      className={`card-gradient rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-8 shadow-xl relative hover:-translate-y-2 transition-all duration-300 will-change-transform ${
         popular ? "ring-2 ring-primary-500" : ""
       }`}
     >
@@ -43,13 +65,16 @@ export default function PricingCard({
         ))}
       </ul>
 
-      <Button
-        to={link}
-        variant={popular ? "primary" : "secondary"}
-        className="w-full"
+      <button
+        onClick={handleClick}
+        className={`w-full px-4 sm:px-6 py-2.5 sm:py-3 rounded-full font-semibold text-sm sm:text-base transition-all duration-300 active:scale-95 ${
+          popular
+            ? "bg-gradient-to-r from-primary-600 to-blue-600 text-white shadow-lg shadow-primary-500/30 hover:shadow-xl hover:shadow-primary-500/40"
+            : "glass-effect text-white hover:bg-white/10"
+        }`}
       >
         Get Started
-      </Button>
+      </button>
     </motion.div>
   );
 }
