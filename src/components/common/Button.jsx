@@ -8,25 +8,19 @@ export default function Button({
   variant = "primary",
   className = "",
   onClick,
+  type = "button",
   ...props
 }) {
   const baseClasses = variant === "primary" ? "btn-primary" : "btn-secondary";
   const combinedClasses = `${baseClasses} ${className}`;
 
-  const MotionButton = motion.button;
-  const MotionLink = motion(Link);
-
   if (to) {
     return (
-      <MotionLink
-        to={to}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        className={combinedClasses}
-        {...props}
-      >
-        {children}
-      </MotionLink>
+      <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+        <Link to={to} className={combinedClasses} {...props}>
+          {children}
+        </Link>
+      </motion.div>
     );
   }
 
@@ -45,7 +39,8 @@ export default function Button({
   }
 
   return (
-    <MotionButton
+    <motion.button
+      type={type}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
       className={combinedClasses}
@@ -53,6 +48,6 @@ export default function Button({
       {...props}
     >
       {children}
-    </MotionButton>
+    </motion.button>
   );
 }

@@ -34,69 +34,66 @@ export default function ContactForm() {
     });
   };
 
+  const inputClasses =
+    "w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-dark-800 border border-white/10 rounded-lg text-white text-sm sm:text-base focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500 transition-colors";
+  const labelClasses =
+    "block text-gray-300 mb-1.5 sm:mb-2 text-xs sm:text-sm font-medium";
+
   return (
     <motion.form
       {...fadeInUp}
       onSubmit={handleSubmit}
-      className="card-gradient rounded-2xl p-8 max-w-2xl mx-auto"
+      className="card-gradient rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-8 max-w-2xl mx-auto"
     >
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
         <div>
-          <label className="block text-gray-300 mb-2 text-sm font-medium">
-            Your Name *
-          </label>
+          <label className={labelClasses}>Your Name *</label>
           <input
             type="text"
             name="name"
             value={formData.name}
             onChange={handleChange}
             required
-            className="w-full px-4 py-3 bg-dark-800 border border-white/10 rounded-lg text-white focus:border-primary-500 focus:outline-none transition-colors"
+            className={inputClasses}
             placeholder="John Doe"
           />
         </div>
 
         <div>
-          <label className="block text-gray-300 mb-2 text-sm font-medium">
-            Email Address *
-          </label>
+          <label className={labelClasses}>Email Address *</label>
           <input
             type="email"
             name="email"
             value={formData.email}
             onChange={handleChange}
             required
-            className="w-full px-4 py-3 bg-dark-800 border border-white/10 rounded-lg text-white focus:border-primary-500 focus:outline-none transition-colors"
+            className={inputClasses}
             placeholder="john@example.com"
           />
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
         <div>
-          <label className="block text-gray-300 mb-2 text-sm font-medium">
-            Phone Number
-          </label>
+          <label className={labelClasses}>Phone Number</label>
           <input
             type="tel"
             name="phone"
             value={formData.phone}
             onChange={handleChange}
-            className="w-full px-4 py-3 bg-dark-800 border border-white/10 rounded-lg text-white focus:border-primary-500 focus:outline-none transition-colors"
+            className={inputClasses}
             placeholder="+91 87992 63376"
           />
         </div>
 
         <div>
-          <label className="block text-gray-300 mb-2 text-sm font-medium">
-            Project Type *
-          </label>
+          <label className={labelClasses}>Project Type *</label>
           <select
             name="projectType"
             value={formData.projectType}
             onChange={handleChange}
             required
-            className="w-full px-4 py-3 bg-dark-800 border border-white/10 rounded-lg text-white focus:border-primary-500 focus:outline-none transition-colors"
+            className={inputClasses}
           >
             <option value="">Select Type</option>
             <option value="website">Website Development</option>
@@ -107,15 +104,13 @@ export default function ContactForm() {
         </div>
       </div>
 
-      <div className="mb-6">
-        <label className="block text-gray-300 mb-2 text-sm font-medium">
-          Budget Range
-        </label>
+      <div className="mb-4 sm:mb-6">
+        <label className={labelClasses}>Budget Range</label>
         <select
           name="budget"
           value={formData.budget}
           onChange={handleChange}
-          className="w-full px-4 py-3 bg-dark-800 border border-white/10 rounded-lg text-white focus:border-primary-500 focus:outline-none transition-colors"
+          className={inputClasses}
         >
           <option value="">Select Budget</option>
           <option value="5k-10k">₹5,000 - ₹10,000</option>
@@ -125,17 +120,15 @@ export default function ContactForm() {
         </select>
       </div>
 
-      <div className="mb-6">
-        <label className="block text-gray-300 mb-2 text-sm font-medium">
-          Project Details *
-        </label>
+      <div className="mb-4 sm:mb-6">
+        <label className={labelClasses}>Project Details *</label>
         <textarea
           name="message"
           value={formData.message}
           onChange={handleChange}
           required
-          rows={5}
-          className="w-full px-4 py-3 bg-dark-800 border border-white/10 rounded-lg text-white focus:border-primary-500 focus:outline-none transition-colors resize-none"
+          rows={4}
+          className={`${inputClasses} resize-none`}
           placeholder="Tell us about your project..."
         />
       </div>

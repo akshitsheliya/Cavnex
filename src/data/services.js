@@ -1,7 +1,9 @@
+import { HiGlobe, HiDeviceMobile, HiCollection } from "react-icons/hi";
+
 export const services = [
   {
     id: "website",
-    icon: "🌐",
+    icon: HiGlobe,
     title: "Website Development",
     description:
       "Modern, responsive websites that convert visitors into customers",
@@ -34,7 +36,7 @@ export const services = [
     pricing: [
       {
         plan: "Basic Website",
-        price: 8000,
+        price: "8,000",
         features: [
           "5 Pages",
           "Responsive Design",
@@ -45,7 +47,7 @@ export const services = [
       },
       {
         plan: "Business Website",
-        price: 15000,
+        price: "15,000",
         popular: true,
         features: [
           "10 Pages",
@@ -59,7 +61,7 @@ export const services = [
       },
       {
         plan: "Enterprise Website",
-        price: 25000,
+        price: "25,000",
         features: [
           "Unlimited Pages",
           "Premium Design",
@@ -73,12 +75,12 @@ export const services = [
     ],
     maintenance: {
       basic: {
-        price: 2000,
+        price: "2,000",
         period: "month",
         features: ["Updates", "Bug Fixes", "Backup"],
       },
       premium: {
-        price: 5000,
+        price: "5,000",
         period: "month",
         features: [
           "Everything in Basic",
@@ -92,7 +94,7 @@ export const services = [
   },
   {
     id: "app",
-    icon: "📱",
+    icon: HiDeviceMobile,
     title: "App Development",
     description:
       "Native and cross-platform mobile applications for iOS and Android",
@@ -125,7 +127,7 @@ export const services = [
     pricing: [
       {
         plan: "Basic App",
-        price: 15000,
+        price: "15,000",
         features: [
           "Single Platform",
           "5 Screens",
@@ -136,7 +138,7 @@ export const services = [
       },
       {
         plan: "Professional App",
-        price: 30000,
+        price: "30,000",
         popular: true,
         features: [
           "Cross Platform",
@@ -150,7 +152,7 @@ export const services = [
       },
       {
         plan: "Enterprise App",
-        price: 50000,
+        price: "50,000",
         features: [
           "Cross Platform",
           "Unlimited Screens",
@@ -164,12 +166,12 @@ export const services = [
     ],
     maintenance: {
       basic: {
-        price: 3000,
+        price: "3,000",
         period: "month",
         features: ["Updates", "Bug Fixes", "Server Maintenance"],
       },
       premium: {
-        price: 7000,
+        price: "7,000",
         period: "month",
         features: [
           "Everything in Basic",
@@ -183,7 +185,7 @@ export const services = [
   },
   {
     id: "combo",
-    icon: "🚀",
+    icon: HiCollection,
     title: "Website + App Combo",
     description: "Complete digital solution with website and mobile app",
     shortFeatures: [
@@ -214,7 +216,7 @@ export const services = [
     pricing: [
       {
         plan: "Startup Combo",
-        price: 20000,
+        price: "20,000",
         features: [
           "Basic Website",
           "Basic Mobile App",
@@ -225,7 +227,7 @@ export const services = [
       },
       {
         plan: "Business Combo",
-        price: 40000,
+        price: "40,000",
         popular: true,
         features: [
           "Professional Website",
@@ -239,7 +241,7 @@ export const services = [
       },
       {
         plan: "Enterprise Combo",
-        price: 70000,
+        price: "70,000",
         features: [
           "Enterprise Website",
           "Enterprise App",
@@ -253,12 +255,12 @@ export const services = [
     ],
     maintenance: {
       basic: {
-        price: 5000,
+        price: "5,000",
         period: "month",
         features: ["All Updates", "Bug Fixes", "Server Maintenance", "Backup"],
       },
       premium: {
-        price: 10000,
+        price: "10,000",
         period: "month",
         features: [
           "Everything in Basic",

@@ -45,8 +45,8 @@ export default function PricingPreview() {
   ];
 
   return (
-    <section className="py-24 bg-dark-800/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="section-padding bg-dark-800/50">
+      <div className="max-w-7xl mx-auto container-padding">
         <SectionTitle
           title="Simple, Transparent Pricing"
           subtitle="Choose the perfect plan for your business needs"
@@ -55,7 +55,7 @@ export default function PricingPreview() {
 
         <motion.div
           {...staggerContainer}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-6xl mx-auto"
         >
           {pricing.map((plan, index) => (
             <PricingCard key={index} {...plan} />
@@ -67,7 +67,7 @@ export default function PricingPreview() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.5 }}
-          className="text-center text-gray-400 mt-12"
+          className="text-center text-gray-400 text-sm sm:text-base mt-8 sm:mt-12 px-4"
         >
           All prices are starting prices. Final cost depends on project
           complexity and requirements.

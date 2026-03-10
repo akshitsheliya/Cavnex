@@ -21,8 +21,8 @@ export default function Home() {
       <WorkProcess />
       <Testimonials />
 
-      <section className="py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="section-padding">
+        <div className="max-w-7xl mx-auto container-padding">
           <SectionTitle
             title="Let's Start Your Project"
             subtitle="Fill out the form and we'll get back to you within 24 hours"

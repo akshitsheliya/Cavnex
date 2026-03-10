@@ -32,6 +32,9 @@ export default {
         sans: ["Inter", "system-ui", "sans-serif"],
         display: ["Sora", "sans-serif"],
       },
+      screens: {
+        xs: "475px",
+      },
     },
   },
   plugins: [],
