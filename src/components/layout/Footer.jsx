@@ -139,7 +139,7 @@ export default function Footer() {
         <div className="pt-6 sm:pt-8 border-t border-white/10">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-gray-400 text-xs sm:text-sm text-center sm:text-left">
-              © 2024 CavNex Studio. All rights reserved.
+              © 2026 CavNex info Tech. All rights reserved.
             </p>
             <div className="flex space-x-4 sm:space-x-6 text-xs sm:text-sm text-gray-400">
               <a href="#" className="hover:text-primary-400 transition-colors">

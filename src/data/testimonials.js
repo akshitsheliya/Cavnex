@@ -7,7 +7,7 @@ export const testimonials = [
     image:
       "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&q=80",
     rating: 5,
-    text: "CavNex Studio transformed my cafe business with a stunning website. Online orders increased by 150%! Highly recommended.",
+    text: "CavNex info Tech transformed my cafe business with a stunning website. Online orders increased by 150%! Highly recommended.",
   },
   {
     id: 2,
@@ -33,7 +33,7 @@ export const testimonials = [
     id: 4,
     name: "Sneha Reddy",
     role: "Freelance Designer",
-    company: "Creative Studio",
+    company: "Creative Info Tech",
     image:
       "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&q=80",
     rating: 5,

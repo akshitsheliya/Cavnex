@@ -26,7 +26,7 @@ export default function Loader() {
             transition={{ delay: 0.3, duration: 0.6 }}
             className="text-3xl sm:text-4xl md:text-5xl font-display font-bold gradient-text mb-3 sm:mb-4"
           >
-            CavNex Studio
+            CavNex info Tech
           </motion.h1>
 
           <motion.p
