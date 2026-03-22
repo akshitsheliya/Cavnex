@@ -14,12 +14,12 @@ export default function Home() {
     <div>
       <Hero />
       <ValueSection />
-      <ServicesSection />
-      <PricingPreview />
       <DemoProjects />
-      <Community />
-      <WorkProcess />
       <Testimonials />
+      {/* <ServicesSection />
+      <PricingPreview />
+      <Community />
+      <WorkProcess /> */}
 
       <section className="section-padding">
         <div className="max-w-7xl mx-auto container-padding">

@@ -30,7 +30,7 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
-      <div className="min-h-screen bg-dark-900 overflow-x-hidden">
+      <div className="min-h-screen w-full overflow-x-hidden bg-black">
         <Navbar />
         <main className="w-full">
           <Routes>

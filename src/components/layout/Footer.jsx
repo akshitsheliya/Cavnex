@@ -24,7 +24,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative bg-dark-900 border-t border-white/10 pt-12 sm:pt-16 md:pt-20 pb-8 sm:pb-10">
+    <footer className="relative border-t border-white/10 pt-12 sm:pt-16 md:pt-20 pb-8 sm:pb-10">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-primary-900/10 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">

@@ -28,10 +28,9 @@ export default {
           900: "#0f172a",
         },
       },
-      fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
-        display: ["Sora", "sans-serif"],
-      },
+ fontFamily: {
+  sans: ['Google Sans', 'sans-serif'],
+},
       screens: {
         xs: "475px",
       },

@@ -5,7 +5,7 @@ export default function Loader() {
     <motion.div
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-dark-900 px-4"
+      className="fixed inset-0 z-50 flex items-center justify-center px-4"
     >
       <div className="relative w-full max-w-md">
         <motion.div
