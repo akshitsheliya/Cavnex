@@ -54,7 +54,7 @@ export default function ValueSection() {
         >
           <div className="flex-shrink-0">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal text-white whitespace-nowrap">
-              Why Choose CavNex info Tech?
+              Why Choose Cavnex info Tech?
             </h2>
           </div>
           <div className="hidden sm:block flex-1 mt-4">
