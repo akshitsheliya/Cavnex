@@ -8,12 +8,12 @@ export default function Hero() {
     <section className="max-w-7xl mx-auto relative min-h-screen bg-black flex flex-col overflow-hidden">
       <div className="flex-1 flex items-center w-full relative z-10">
         <div className="w-full grid grid-cols-1 lg:grid-cols-2 min-h-[calc(100vh-88px)]">
-          <div className="flex flex-col justify-center px-4 py-10 lg:py-0 gap-20">
+          <div className="flex flex-col justify-center px-4 py-10 lg:py-0 gap-10 sm:gap-20">
             <motion.h1
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-3 tracking-normal mb-8"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-white leading-tight tracking-normal mb-8"
             >
               We Build
               <br />

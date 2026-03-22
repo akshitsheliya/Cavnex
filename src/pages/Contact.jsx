@@ -107,7 +107,7 @@ export default function Contact() {
           gradient
         />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 mb-12 sm:mb-16 md:mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 mb-12 sm:mb-16 md:mb-20">
           <motion.div {...fadeInLeft}>
             <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6 sm:mb-8">
               Let's Start a Conversation

@@ -30,7 +30,7 @@ export default function Community() {
             Community
           </motion.h2>
 
-          <div className="relative z-10 mt-10 sm:mt-12 grid grid-cols-2 gap-x-10 gap-y-7 sm:gap-y-14">
+          <div className="relative z-10 mt-10 sm:mt-12 grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-7 sm:gap-y-14">
             {[stats[0], stats[1], stats[2], stats[3]].map((s, i) => (
               <motion.div
                 key={i}
