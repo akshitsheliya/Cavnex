@@ -16,20 +16,11 @@ export default function Home() {
       <ValueSection />
       <DemoProjects />
       <Testimonials />
-      {/* <ServicesSection />
-      <PricingPreview />
       <Community />
+      <ServicesSection />
+      {/* 
+      <PricingPreview />
       <WorkProcess /> */}
-
-      <section className="section-padding">
-        <div className="max-w-7xl mx-auto container-padding">
-          <SectionTitle
-            title="Let's Start Your Project"
-            subtitle="Fill out the form and we'll get back to you within 24 hours"
-          />
-          <ContactForm />
-        </div>
-      </section>
     </div>
   );
 }

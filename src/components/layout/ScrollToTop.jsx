@@ -1,29 +1,11 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
-const scrollToTopPages = [
-  "/services",
-  "/services/website",
-  "/services/app",
-  "/services/combo",
-  "/projects",
-  "/community",
-  "/contact",
-];
-
 export default function ScrollToTop() {
-  const { pathname, hash, state } = useLocation();
+  const { pathname, state } = useLocation();
 
   useEffect(() => {
-    if (scrollToTopPages.includes(pathname) && !state?.scrollTo) {
-      window.scrollTo({ top: 0, behavior: "instant" });
-    }
-
-    if (pathname === "/" && !hash && !state?.fromService) {
-      window.scrollTo({ top: 0, behavior: "instant" });
-    }
-
-    if (pathname === "/" && state?.scrollTo) {
+    if (state?.scrollTo) {
       setTimeout(() => {
         const element = document.getElementById(state.scrollTo);
         if (element) {
@@ -37,7 +19,7 @@ export default function ScrollToTop() {
         }
       }, 100);
     }
-  }, [pathname, hash, state]);
+  }, [pathname, state]);
 
   return null;
 }

@@ -32,32 +32,32 @@
   font-display: swap;
 }
 
-@font-face {
-  font-family: "Google Sans";
-  src: url("/src/assets/fonts/GoogleSans-Italic.woff2") format("woff2");
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
+html.lenis,
+html.lenis body {
+  height: auto;
 }
 
-@font-face {
-  font-family: "Google Sans";
-  src: url("/src/assets/fonts/GoogleSans-MediumItalic.woff2") format("woff2");
-  font-weight: 500;
-  font-style: italic;
-  font-display: swap;
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }
 
 #root {
   width: 100%;
-  min-height: 100vh;
 }
 
 @layer base {
-  * {
-    @apply scroll-smooth;
-  }
-
   html {
     @apply text-[14px] sm:text-[15px] md:text-[16px];
   }
@@ -67,41 +67,34 @@
   }
 
   ::-webkit-scrollbar {
-    @apply w-1.5 sm:w-2;
+    width: 10px;
   }
 
   ::-webkit-scrollbar-track {
-    @apply bg-neutral-950;
+    background: #000;
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-white/20 rounded-full;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 5px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-white/30;
+    background: rgba(255, 255, 255, 0.25);
   }
 }
 
 @layer components {
   .glass-effect {
-    @apply bg-white/5 backdrop-blur-xl border border-white/10;
-  }
-
-  .gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-400 via-blue-500 to-purple-600;
+    @apply bg-white/5 border border-white/10;
   }
 
   .btn-primary {
-    @apply px-5 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-4 bg-gradient-to-r from-primary-600 to-blue-600 rounded-full font-semibold text-white text-sm sm:text-base shadow-lg shadow-primary-500/30 hover:shadow-xl hover:shadow-primary-500/40 transition-all duration-300 hover:scale-105 inline-flex items-center justify-center;
+    @apply px-5 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-4 bg-gradient-to-r from-primary-600 to-blue-600 rounded-full font-semibold text-white text-sm sm:text-base transition-all duration-300 hover:scale-105 inline-flex items-center justify-center;
   }
 
   .btn-secondary {
     @apply px-5 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-4 glass-effect rounded-full font-semibold text-white text-sm sm:text-base hover:bg-white/10 transition-all duration-300 hover:scale-105 inline-flex items-center justify-center;
-  }
-
-  .card-gradient {
-    @apply bg-gradient-to-br from-dark-800 to-dark-900 border border-white/10;
   }
 
   .section-padding {

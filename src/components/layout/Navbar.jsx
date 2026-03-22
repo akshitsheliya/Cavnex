@@ -57,12 +57,12 @@ const Navbar = () => {
           damping: 20,
           mass: 0.8,
         }}
-        className="fixed top-0 left-0 right-0 z-50"
+        className="fixed top-0 left-0 right-0 z-[100]"
       >
         <div
-          className={`transition-all duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] ${
+          className={`transition-all duration-300 ${
             scrolled
-              ? "bg-[#0a0a0a]/80 backdrop-blur-2xl backdrop-saturate-200 border-b border-white/[0.06] shadow-[0_1px_30px_rgba(0,0,0,0.4)]"
+              ? "bg-black/90 border-b border-white/[0.06]"
               : "bg-transparent border-b border-transparent"
           }`}
         >
@@ -84,7 +84,7 @@ const Navbar = () => {
               </Link>
 
               <div className="hidden md:flex items-center">
-                <div className="relative flex items-center bg-white/[0.04] backdrop-blur-xl rounded-full px-1.5 py-1.5 border border-white/[0.06]">
+                <div className="relative flex items-center bg-white/[0.04] rounded-full px-1.5 py-1.5 border border-white/[0.06]">
                   {navLinks.map((link, index) => (
                     <Link
                       key={link.name}
@@ -145,7 +145,6 @@ const Navbar = () => {
                     className="relative group px-7 py-2.5 text-sm font-bold rounded-full overflow-hidden"
                   >
                     <div className="absolute inset-0 bg-white rounded-full transition-all duration-300 group-hover:bg-gray-100" />
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full bg-gradient-to-r from-white via-gray-50 to-white" />
                     <span className="relative z-10 text-black tracking-wide">
                       CONTACT
                     </span>
@@ -157,7 +156,7 @@ const Navbar = () => {
                 whileTap={{ scale: 0.85 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
                 onClick={() => setIsOpen(!isOpen)}
-                className="md:hidden relative z-50 w-11 h-11 flex items-center justify-center rounded-full bg-white/[0.06] backdrop-blur-xl border border-white/[0.08] active:bg-white/[0.1]"
+                className="md:hidden relative z-50 w-11 h-11 flex items-center justify-center rounded-full bg-white/[0.06] border border-white/[0.08] active:bg-white/[0.1]"
                 aria-label="Toggle menu"
               >
                 <div className="w-5 h-4 flex flex-col justify-between items-center">
@@ -214,7 +213,7 @@ const Navbar = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
-                className="fixed inset-0 bg-black/60 backdrop-blur-sm md:hidden"
+                className="fixed inset-0 bg-black/80 md:hidden"
                 onClick={() => setIsOpen(false)}
               />
 
@@ -228,7 +227,7 @@ const Navbar = () => {
                   damping: 30,
                   mass: 0.8,
                 }}
-                className="fixed top-[72px] left-3 right-3 md:hidden bg-[#111111]/95 backdrop-blur-2xl backdrop-saturate-200 rounded-2xl border border-white/[0.08] shadow-[0_25px_60px_rgba(0,0,0,0.5)] overflow-hidden"
+                className="fixed top-[72px] left-3 right-3 md:hidden bg-[#111111] rounded-2xl border border-white/[0.08] overflow-hidden"
               >
                 <div className="p-5">
                   <div className="space-y-0.5">

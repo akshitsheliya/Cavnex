@@ -1,145 +1,122 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 import { FaInstagram, FaLinkedinIn, FaTwitter, FaGithub } from "react-icons/fa";
 import { HiMail, HiPhone, HiLocationMarker } from "react-icons/hi";
-
+import cavnex_full from "../../assets/cavnex_logo/cavnex_full.svg";
 export default function Footer() {
-  const services = [
-    { name: "Website Development", path: "/services/website" },
-    { name: "App Development", path: "/services/app" },
-    { name: "Combo Package", path: "/services/combo" },
+  const solutions = [
+    { name: "Self-hosted", path: "/services/website" },
+    { name: "SaaS Hosting", path: "/services/app" },
+    { name: "Platform", path: "/services/combo" },
+    { name: "Desktop App", path: "/services" },
   ];
 
   const company = [
     { name: "About Us", path: "/community" },
+    { name: "Privacy", path: "#" },
+    { name: "Terms", path: "#" },
     { name: "Projects", path: "/projects" },
     { name: "Contact", path: "/contact" },
   ];
 
   const social = [
-    { name: "Instagram", icon: FaInstagram, url: "#" },
-    { name: "LinkedIn", icon: FaLinkedinIn, url: "#" },
     { name: "Twitter", icon: FaTwitter, url: "#" },
+    { name: "Instagram", icon: FaInstagram, url: "#" },
     { name: "GitHub", icon: FaGithub, url: "#" },
+    { name: "LinkedIn", icon: FaLinkedinIn, url: "#" },
   ];
 
   return (
-    <footer className="relative border-t border-white/10 pt-12 sm:pt-16 md:pt-20 pb-8 sm:pb-10">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-primary-900/10 pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-12 mb-10 sm:mb-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="sm:col-span-2 lg:col-span-1"
-          >
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-primary-500 to-purple-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg sm:text-xl">
-                  W
-                </span>
-              </div>
-              <span className="text-xl sm:text-2xl font-display font-bold gradient-text">
-                CavNex
-              </span>
+    <footer className="bg-[#0e0e0e] border-t border-white/5 px-4 sm:px-8 lg:px-16 py-12 sm:py-16">
+      <div className="max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 mb-6">
+          <div>
+            <div className="flex items-center gap-2.5 mb-5">
+              <img
+                src={cavnex_full}
+                alt="CavNex"
+                className="h-6 sm:h-7 md:h-8 w-auto object-contain"
+              />
             </div>
-            <p className="text-gray-400 text-sm sm:text-base mb-6 max-w-xs">
+
+            <p className="text-gray-400 text-sm leading-relaxed mb-6 max-w-[220px]">
               Crafting digital experiences that transform businesses and delight
               users.
             </p>
-            <div className="flex space-x-3">
+
+            <div className="flex items-center gap-4">
               {social.map((item) => (
                 <a
                   key={item.name}
                   href={item.url}
-                  className="w-9 h-9 sm:w-10 sm:h-10 glass-effect rounded-full flex items-center justify-center hover:bg-primary-600/20 transition-all duration-300 hover:scale-110"
                   aria-label={item.name}
+                  className="text-white hover:text-gray-300 transition-colors duration-200"
                 >
-                  <item.icon className="w-4 h-4 sm:w-5 sm:h-5 text-gray-300" />
+                  <item.icon className="w-5 h-5" />
                 </a>
               ))}
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            <h3 className="text-white font-semibold text-base sm:text-lg mb-4">
-              Services
+          <div>
+            <h3 className="text-white font-bold text-xs tracking-widest uppercase mb-5">
+              Solutions
             </h3>
-            <ul className="space-y-2 sm:space-y-3">
-              {services.map((item) => (
+            <ul className="space-y-3.5">
+              {solutions.map((item) => (
                 <li key={item.name}>
                   <Link
                     to={item.path}
-                    className="text-gray-400 hover:text-primary-400 transition-colors text-sm sm:text-base"
+                    className="text-gray-400 hover:text-white transition-colors duration-200 text-sm"
                   >
                     {item.name}
                   </Link>
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <h3 className="text-white font-semibold text-base sm:text-lg mb-4">
+          <div>
+            <h3 className="text-white font-bold text-xs tracking-widest uppercase mb-5">
               Company
             </h3>
-            <ul className="space-y-2 sm:space-y-3">
+            <ul className="space-y-3.5">
               {company.map((item) => (
                 <li key={item.name}>
                   <Link
                     to={item.path}
-                    className="text-gray-400 hover:text-primary-400 transition-colors text-sm sm:text-base"
+                    className="text-gray-400 hover:text-white transition-colors duration-200 text-sm"
                   >
                     {item.name}
                   </Link>
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            <h3 className="text-white font-semibold text-base sm:text-lg mb-4">
+          <div>
+            <h3 className="text-white font-bold text-xs tracking-widest uppercase mb-5">
               Contact
             </h3>
-            <ul className="space-y-2 sm:space-y-3 text-gray-400 text-sm sm:text-base">
-              <li className="flex items-center gap-2">
-                <HiMail className="w-4 h-4 text-primary-400 flex-shrink-0" />
-                <span>hello@cavnex.com</span>
+            <ul className="space-y-4">
+              <li className="flex items-center gap-3">
+                <HiMail className="w-4 h-4 text-white flex-shrink-0" />
+                <span className="text-gray-400 text-sm">info@cavnex.com</span>
               </li>
-              <li className="flex items-center gap-2">
-                <HiPhone className="w-4 h-4 text-primary-400 flex-shrink-0" />
-                <span>+91 87992 63376</span>
+              <li className="flex items-center gap-3">
+                <HiPhone className="w-4 h-4 text-white flex-shrink-0" />
+                <span className="text-gray-400 text-sm">+91 91575 00298</span>
               </li>
-              <li className="flex items-center gap-2">
-                <HiLocationMarker className="w-4 h-4 text-primary-400 flex-shrink-0" />
-                <span>Mumbai, India</span>
+              <li className="flex items-center gap-3">
+                <HiLocationMarker className="w-4 h-4 text-white flex-shrink-0" />
+                <span className="text-gray-400 text-sm">Gujarat, India</span>
               </li>
             </ul>
-          </motion.div>
+          </div>
         </div>
-
         <div className="pt-6 sm:pt-8 border-t border-white/10">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-gray-400 text-xs sm:text-sm text-center sm:text-left">
-              © 2026 CavNex info Tech. All rights reserved.
+              © 2026 Cavnex info Tech. All rights reserved.
             </p>
             <div className="flex space-x-4 sm:space-x-6 text-xs sm:text-sm text-gray-400">
               <a href="#" className="hover:text-primary-400 transition-colors">
