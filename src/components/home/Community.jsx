@@ -20,7 +20,7 @@ export default function Community() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black text-white leading-tight relative z-10"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black text-white leading-tight relative z-10"
             style={{ maxWidth: "55%" }}
           >
             Our

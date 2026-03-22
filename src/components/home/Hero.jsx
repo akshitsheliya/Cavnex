@@ -5,15 +5,15 @@ import heroImage from "../../assets/hero-image.png";
 
 export default function Hero() {
   return (
-    <section className="max-w-7xl mx-auto relative min-h-screen bg-black flex flex-col overflow-hidden">
+    <section className="max-w-7xl mx-auto relative min-h-0 lg:min-h-screen bg-black flex flex-col overflow-hidden">
       <div className="flex-1 flex items-center w-full relative z-10">
-        <div className="w-full grid grid-cols-1 lg:grid-cols-2 min-h-[calc(100vh-88px)]">
-          <div className="flex flex-col justify-center px-4 py-10 lg:py-0 gap-10 sm:gap-20">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-2 min-h-0 lg:min-h-[calc(100vh-88px)]">
+          <div className="flex flex-col justify-center px-4 py-8 sm:py-10 lg:py-0 gap-4 sm:gap-6 md:gap-16 lg:gap-20">
             <motion.h1
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-white leading-tight tracking-normal mb-8"
+              className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-white leading-tight tracking-normal mb-2 sm:mb-4 md:mb-8"
             >
               We Build
               <br />
@@ -60,15 +60,15 @@ export default function Hero() {
                 delay: 0.2,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className="relative w-full h-full min-h-[400px] lg:min-h-0"
+              className="relative w-full h-auto lg:h-full min-h-0 lg:min-h-0"
             >
               <div className="absolute inset-0" />
 
-              <div className="relative z-10 flex items-center justify-center h-full py-8 lg:py-0">
+              <div className="relative z-10 flex items-center justify-center h-full py-4 sm:py-6 lg:py-0">
                 <img
                   src={heroImage}
                   alt="Hero"
-                  className="w-full h-full object-contain"
+                  className="w-full h-auto max-h-[280px] sm:max-h-[350px] md:max-h-[400px] lg:max-h-none lg:h-full object-contain"
                 />
               </div>
             </motion.div>

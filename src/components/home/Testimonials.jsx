@@ -210,13 +210,13 @@ export default function Testimonials() {
         }
       `}</style>
 
-      <div className="px-4 sm:px-8 lg:px-16 mb-10 sm:mb-14">
+      <div className="px-4 sm:px-6 md:px-8 lg:px-16 mb-8 sm:mb-10 md:mb-14">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="text-5xl sm:text-6xl lg:text-7xl font-black text-white leading-tight"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-tight"
         >
           What Our
           <br />

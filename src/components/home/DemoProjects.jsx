@@ -17,24 +17,24 @@ const ImgCard = ({ src, alt }) => (
 
 export default function DemoProjects() {
   return (
-    <section className="bg-black py-16 px-4 sm:px-8 lg:px-16">
+    <section className="bg-black py-10 sm:py-12 md:py-16 px-4 sm:px-8 lg:px-16">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-5xl sm:text-6xl lg:text-7xl font-medium text-white mb-10">
+        <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-medium text-white mb-6 sm:mb-8 md:mb-10">
           Projects
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:h-[1200px]">
-          <div className="grid grid-rows-5 gap-4 min-h-0">
-            <motion.div className="row-span-2 rounded-2xl overflow-hidden min-h-0">
+          <div className="flex flex-col md:grid md:grid-rows-5 gap-4 min-h-0">
+            <motion.div className="h-[240px] sm:h-[280px] md:h-auto md:row-span-2 rounded-2xl overflow-hidden min-h-0">
               <ImgCard src={casestudy_1} alt="Green Phone Case Study" />
             </motion.div>
 
-            <motion.div className="row-span-2 rounded-2xl overflow-hidden min-h-0">
+            <motion.div className="h-[240px] sm:h-[280px] md:h-auto md:row-span-2 rounded-2xl overflow-hidden min-h-0">
               <ImgCard src={casestudy_2} alt="Teal Phones Case Study" />
             </motion.div>
 
-            <motion.div className="row-span-1 rounded-2xl bg-[#111] p-5 flex flex-col justify-center min-h-0">
-              <p className="text-white text-6xl font-semibold mb-2 capitalize">
+            <motion.div className="md:row-span-1 rounded-2xl bg-[#111] p-5 flex flex-col justify-center min-h-0">
+              <p className="text-white text-2xl sm:text-4xl md:text-6xl font-semibold mb-2 capitalize">
                 How we design web-sites
               </p>
               <Link
@@ -46,13 +46,13 @@ export default function DemoProjects() {
             </motion.div>
           </div>
 
-          <div className="grid grid-rows-2 gap-4 min-h-0">
-            <motion.div className="rounded-2xl overflow-hidden min-h-0">
+          <div className="flex flex-col md:grid md:grid-rows-2 gap-4 min-h-0">
+            <motion.div className="h-[240px] sm:h-[280px] md:h-auto rounded-2xl overflow-hidden min-h-0">
               <ImgCard src={casestudy_3} alt="Purple Phone Case Study" />
             </motion.div>
 
-            <motion.div className="rounded-2xl overflow-hidden min-h-0">
-              <ImgCard src={casestudy_4} alt="AudiencePlus Case Study" />
+            <motion.div className="h-[240px] sm:h-[280px] md:h-auto rounded-2xl overflow-hidden min-h-0">
+              <ImgCard src={casestudy_4} alt="AudienceePlus Case Study" />
             </motion.div>
           </div>
         </div>
