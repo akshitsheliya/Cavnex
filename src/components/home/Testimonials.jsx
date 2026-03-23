@@ -1,5 +1,10 @@
-import { useRef, useState, useEffect, useCallback } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, FreeMode } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/free-mode";
 
 const testimonials = [
   {
@@ -34,19 +39,15 @@ const testimonials = [
   },
 ];
 
-const GAP = 16;
+const duplicatedTestimonials = [...testimonials, ...testimonials];
 
-const TestimonialCard = ({ t, cardWidth, onHover, onLeave }) => {
+const TestimonialCard = ({ t }) => {
   return (
     <div
-      onMouseEnter={onHover}
-      onMouseLeave={onLeave}
-      className="testimonial-card flex-shrink-0 rounded-2xl p-6 sm:p-7 flex flex-col justify-between relative overflow-hidden cursor-default select-none"
+      className="testimonial-card h-full rounded-2xl p-6 sm:p-7 flex flex-col justify-between relative overflow-hidden select-none"
       style={{
-        width: cardWidth,
         minHeight: 260,
         background: "#1a1a1a",
-        willChange: "transform",
       }}
     >
       <div className="card-glow absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-500" />
@@ -77,105 +78,22 @@ const TestimonialCard = ({ t, cardWidth, onHover, onLeave }) => {
 };
 
 export default function Testimonials() {
-  const containerRef = useRef(null);
-  const trackRef = useRef(null);
   const [cardWidth, setCardWidth] = useState(380);
-  const [isCardHovered, setIsCardHovered] = useState(false);
-
-  const currentX = useRef(0);
-  const targetX = useRef(0);
-  const animationRef = useRef(null);
-
-  const singleSetWidth = testimonials.length * (cardWidth + GAP);
-
-  const infiniteCards = [...testimonials, ...testimonials, ...testimonials];
 
   useEffect(() => {
-    currentX.current = -singleSetWidth;
-    targetX.current = -singleSetWidth;
-    if (trackRef.current) {
-      trackRef.current.style.transform = `translateX(${currentX.current}px)`;
-    }
-  }, [singleSetWidth]);
-
-  useEffect(() => {
-    const updateDimensions = () => {
-      const newCardWidth =
-        window.innerWidth < 640 ? 300 : window.innerWidth < 1024 ? 340 : 380;
-      setCardWidth(newCardWidth);
-    };
-
-    updateDimensions();
-    window.addEventListener("resize", updateDimensions);
-    return () => window.removeEventListener("resize", updateDimensions);
-  }, []);
-
-  const normalizePosition = useCallback(
-    (pos) => {
-      let newPos = pos;
-      if (newPos < -singleSetWidth * 2) {
-        newPos += singleSetWidth;
-      } else if (newPos > 0) {
-        newPos -= singleSetWidth;
-      }
-      return newPos;
-    },
-    [singleSetWidth]
-  );
-
-  useEffect(() => {
-    const autoScrollSpeed = 0.3;
-    const lerpFactor = 0.08;
-
-    const animate = () => {
-      if (!isCardHovered) {
-        targetX.current -= autoScrollSpeed;
-      }
-
-      targetX.current = normalizePosition(targetX.current);
-
-      const diff = targetX.current - currentX.current;
-
-      if (Math.abs(diff) > singleSetWidth / 2) {
-        currentX.current = targetX.current;
+    const updateWidth = () => {
+      if (window.innerWidth < 640) {
+        setCardWidth(300);
+      } else if (window.innerWidth < 1024) {
+        setCardWidth(340);
       } else {
-        currentX.current += diff * lerpFactor;
-      }
-
-      currentX.current = normalizePosition(currentX.current);
-
-      if (trackRef.current) {
-        trackRef.current.style.transform = `translateX(${currentX.current}px)`;
-      }
-
-      animationRef.current = requestAnimationFrame(animate);
-    };
-
-    animationRef.current = requestAnimationFrame(animate);
-
-    return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
+        setCardWidth(380);
       }
     };
-  }, [isCardHovered, normalizePosition, singleSetWidth]);
 
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const handleWheel = (e) => {
-      e.preventDefault();
-
-      const scrollAmount = e.deltaY * 0.15;
-      targetX.current -= scrollAmount;
-    };
-
-    container.addEventListener("wheel", handleWheel, { passive: false });
-
-    return () => {
-      container.removeEventListener("wheel", handleWheel);
-    };
+    updateWidth();
+    window.addEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
   }, []);
 
   return (
@@ -208,6 +126,10 @@ export default function Testimonials() {
           width: 2.5rem;
           background: linear-gradient(to right, rgb(45,212,191), rgb(59,130,246));
         }
+        
+        .testimonial-swiper .swiper-wrapper {
+          transition-timing-function: linear !important;
+        }
       `}</style>
 
       <div className="px-4 sm:px-6 md:px-8 lg:px-16 mb-8 sm:mb-10 md:mb-14">
@@ -224,7 +146,7 @@ export default function Testimonials() {
         </motion.h2>
       </div>
 
-      <div ref={containerRef} className="relative w-full py-6">
+      <div className="relative w-full py-6">
         <div
           className="absolute left-0 top-0 bottom-0 w-12 sm:w-20 lg:w-32 z-10 pointer-events-none"
           style={{
@@ -238,24 +160,34 @@ export default function Testimonials() {
           }}
         />
 
-        <div
-          ref={trackRef}
-          className="flex"
-          style={{
-            gap: GAP,
-            willChange: "transform",
+        <Swiper
+          modules={[Autoplay, FreeMode]}
+          spaceBetween={16}
+          slidesPerView="auto"
+          loop={true}
+          loopAdditionalSlides={6}
+          freeMode={{
+            enabled: true,
+            momentum: true,
+            momentumRatio: 0.5,
+            momentumVelocityRatio: 0.5,
           }}
+          autoplay={{
+            delay: 1,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+          }}
+          speed={4000}
+          grabCursor={true}
+          allowTouchMove={true}
+          className="testimonial-swiper"
         >
-          {infiniteCards.map((t, i) => (
-            <TestimonialCard
-              key={`card-${i}`}
-              t={t}
-              cardWidth={cardWidth}
-              onHover={() => setIsCardHovered(true)}
-              onLeave={() => setIsCardHovered(false)}
-            />
+          {duplicatedTestimonials.map((t, index) => (
+            <SwiperSlide key={`${t.id}-${index}`} style={{ width: cardWidth }}>
+              <TestimonialCard t={t} />
+            </SwiperSlide>
           ))}
-        </div>
+        </Swiper>
       </div>
 
       {/* <div className="mt-10">
