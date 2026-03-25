@@ -1,153 +1,898 @@
-import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-import SectionTitle from "../components/common/SectionTitle";
-import { services } from "../data/services";
-import { HiCheck, HiArrowRight } from "react-icons/hi";
+// import React, { useState, useEffect } from "react";
+// import {
+//   Globe,
+//   Smartphone,
+//   Layers,
+//   ArrowRight,
+//   Check,
+//   Minus,
+// } from "lucide-react";
+// import { useNavigate } from "react-router-dom";
+// import { motion } from "framer-motion";
 
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.1,
+// const Services = () => {
+//   const navigate = useNavigate();
+//   const [isVisible, setIsVisible] = useState(false);
+//   const [openIndex, setOpenIndex] = useState(null);
+//   useEffect(() => {
+//     setIsVisible(true);
+//   }, []);
+
+//   const services = [
+//     {
+//       id: 1,
+//       icon: Globe,
+//       title: "Website Development",
+//       description:
+//         "Modern, responsive websites that convert visitors into customers",
+//       features: [
+//         "Custom Responsive Design",
+//         "Fast Loading Speed",
+//         "Mobile-First Approach",
+//         "Cross-Browser Compatible",
+//         "SEO Optimization",
+//         "Contact Forms",
+//       ],
+//       price: "₹8,000",
+//       delivery: "2-4 Weeks",
+//       support: "1-6 Months",
+//       gradient: "from-purple-600 to-pink-600",
+//       popular: false,
+//       link: "/services/website",
+//     },
+//     {
+//       id: 2,
+//       icon: Smartphone,
+//       title: "App Development",
+//       description:
+//         "Native and cross-platform mobile applications for iOS and Android",
+//       features: [
+//         "Cross-Platform Development",
+//         "Push Notifications",
+//         "Native Performance",
+//         "Offline Functionality",
+//         "Cloud Backend Integration",
+//         "In-App Purchases",
+//       ],
+//       price: "₹15,000",
+//       delivery: "4-8 Weeks",
+//       support: "1-6 Months",
+//       gradient: "from-purple-600 to-pink-600",
+//       popular: true,
+//       link: "/services/app",
+//     },
+//     {
+//       id: 3,
+//       icon: Layers,
+//       title: "Website + App Combo",
+//       description: "Complete digital solution with website and mobile app",
+//       features: [
+//         "Responsive Website",
+//         "Shared Backend",
+//         "Cross-Platform Mobile App",
+//         "Admin Dashboard",
+//         "Unified Design System",
+//         "SEO Optimization",
+//       ],
+//       price: "₹20,000",
+//       delivery: "6-10 Weeks",
+//       support: "2-12 Months",
+//       gradient: "from-purple-600 to-pink-600",
+//       popular: false,
+//       link: "/services/combo",
+//     },
+//   ];
+//   const comparisonData = [
+//     {
+//       feature: "Responsive Design",
+//       website: true,
+//       app: true,
+//       combo: true,
+//     },
+//     {
+//       feature: "SEO Optimization",
+//       website: true,
+//       app: false,
+//       combo: true,
+//     },
+//     {
+//       feature: "Cross Platform",
+//       website: false,
+//       app: true,
+//       combo: true,
+//     },
+//     {
+//       feature: "Push Notifications",
+//       website: false,
+//       app: true,
+//       combo: true,
+//     },
+//     {
+//       feature: "Admin Dashboard",
+//       website: "addon",
+//       app: "addon",
+//       combo: true,
+//     },
+//     {
+//       feature: "Payment Integration",
+//       website: "addon",
+//       app: "addon",
+//       combo: true,
+//     },
+//     {
+//       feature: "Cloud Backend",
+//       website: false,
+//       app: true,
+//       combo: true,
+//     },
+//     {
+//       feature: "Analytics",
+//       website: true,
+//       app: true,
+//       combo: true,
+//     },
+//     {
+//       feature: "Maintenance Support",
+//       website: true,
+//       app: true,
+//       combo: true,
+//     },
+//     {
+//       feature: "Priority Support",
+//       website: false,
+//       app: false,
+//       combo: true,
+//     },
+//   ];
+//   const steps = [
+//     {
+//       number: "01",
+//       title: "Discovery",
+//       description:
+//         "We understand your requirements, goals, and target audience",
+//     },
+//     {
+//       number: "02",
+//       title: "Design",
+//       description: "Creating wireframes and visual designs for your approval",
+//     },
+//     {
+//       number: "03",
+//       title: "Development",
+//       description: "Building your solution with clean, efficient code",
+//     },
+//     {
+//       number: "04",
+//       title: "Delivery",
+//       description: "Testing, deployment, and handover with full support",
+//     },
+//   ];
+
+//   const faqs = [
+//     { question: "How long does it take to complete a project?" },
+//     { question: "Do you provide source code?" },
+//     { question: "What technologies do you use?" },
+//     { question: "Do you offer maintenance after delivery?" },
+//     { question: "Can I request changes during development?" },
+//     { question: "What payment methods do you accept?" },
+//   ];
+//   return (
+//     <div className="min-h-screen bg-black text-white py-20 px-4 sm:px-6 lg:px-8">
+//       <div className="max-w-6xl mx-auto  ">
+//         <motion.div
+//           initial={{ opacity: 0, y: 20 }}
+//           whileInView={{ opacity: 1, y: 0 }}
+//           viewport={{ once: true }}
+//           transition={{ duration: 0.7 }}
+//           className="mb-10"
+//         >
+//           <div className="flex flex-col sm:flex-row sm:items-start sm:gap-8 mb-4">
+//             <div className="flex-shrink-0">
+//               <h2 className="text-3xl md:text-4xl font-light whitespace-nowrap mb-6 ">
+//                 Our Services
+//               </h2>
+//             </div>
+//             <div className="hidden sm:block flex-1 mt-2">
+//               <div className="h-px bg-gray-700 w-full mt-3" />
+//             </div>
+//           </div>
+//           <p className="text-gray-400 text-lg sm:text-xl max-w-3xl">
+//             Comprehensive digital solutions tailored to your business <br />
+//             needs. We offer end-to-end development services to help <br /> your
+//             business grow.
+//           </p>{" "}
+//         </motion.div>
+//         <div className="space-y-12">
+//           {services.map((service) => {
+//             const IconComponent = service.icon;
+//             return (
+//               <div
+//                 key={service.id}
+//                 className="relative rounded-3xl p-6 sm:p-8 lg:p-10"
+//               >
+//                 {/* Border Layer */}
+//                 {service.popular ? (
+//                   <div
+//                     className="absolute inset-0 rounded-3xl pointer-events-none"
+//                     style={{
+//                       background:
+//                         "linear-gradient(#0d0d0d, #0d0d0d) padding-box, linear-gradient(180deg, #a855f7 0%, #ec4899 100%) border-box",
+//                       border: "1.5px solid transparent",
+//                     }}
+//                   />
+//                 ) : (
+//                   <div
+//                     className="absolute inset-0 rounded-3xl pointer-events-none"
+//                     style={{
+//                       border: "1.5px solid rgba(255,255,255,0.12)",
+//                       background: "#0d0d0d",
+//                     }}
+//                   />
+//                 )}
+
+//                 {/* Most Popular Badge */}
+//                 {service.popular && (
+//                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-20">
+//                     <span className="bgCommon text-white px-6 py-2 rounded-full text-sm font-semibold">
+//                       Most Popular
+//                     </span>
+//                   </div>
+//                 )}
+
+//                 {/* Content */}
+//                 <div className="relative z-10 flex flex-col lg:flex-row lg:items-start gap-8">
+//                   <div className="flex-shrink-0">
+//                     <div
+//                       className={`w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br ${service.gradient} flex items-center justify-center`}
+//                     >
+//                       <IconComponent className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
+//                     </div>
+//                   </div>
+
+//                   <div className="flex-grow space-y-6">
+//                     <div>
+//                       <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3">
+//                         {service.title}
+//                       </h2>
+//                       <p className="text-gray-400 text-base sm:text-lg">
+//                         {service.description}
+//                       </p>
+//                     </div>
+
+//                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+//                       {service.features.map((feature, index) => (
+//                         <div key={index} className="flex items-center gap-2">
+//                           <Check className="w-5 h-5 text-black bg-white rounded-full flex-shrink-0" />
+//                           <span className="text-sm sm:text-base text-gray-300">
+//                             {feature}
+//                           </span>
+//                         </div>
+//                       ))}
+//                     </div>
+
+//                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+//                       <div className="bg-black/50 rounded-xl p-4 ">
+//                         <p className="text-gray-500 text-sm mb-1">
+//                           Starting from
+//                         </p>
+//                         <p className="text-2xl sm:text-3xl font-bold figmaText">
+//                           {service.price}
+//                         </p>
+//                       </div>
+
+//                       <div className="bg-black/50 rounded-xl p-4">
+//                         <p className="text-gray-500 text-sm mb-1">
+//                           Delivery Time
+//                         </p>
+//                         <p className="text-xl sm:text-2xl font-semibold text-white">
+//                           {service.delivery}
+//                         </p>
+//                       </div>
+
+//                       <div className="bg-black/50 rounded-xl p-4">
+//                         <p className="text-gray-500 text-sm mb-1">Support</p>
+//                         <p className="text-xl sm:text-2xl font-semibold text-white">
+//                           {service.support}
+//                         </p>
+//                       </div>
+//                     </div>
+
+//                     <div className="flex flex-col sm:flex-row gap-4 pt-4">
+//                       <button
+//                         onClick={() => navigate(service.link)}
+//                         className={`flex items-center justify-center gap-2 bg-gradient-to-r ${service.gradient} text-white px-8 py-4 rounded-full font-semibold hover:opacity-90 transition-opacity`}
+//                       >
+//                         View Details
+//                         <ArrowRight className="w-5 h-5" />
+//                       </button>
+
+//                       <button
+//                         onClick={() => navigate("/contact")}
+//                         className="flex items-center justify-center gap-2 bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-black transition-all"
+//                       >
+//                         Get Quote
+//                       </button>
+//                     </div>
+//                   </div>
+//                 </div>
+//               </div>
+//             );
+//           })}
+//         </div>{" "}
+//         <div
+//           className={`transition-all duration-1000 mt-20 transform ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+//           style={{ transitionDelay: "600ms" }}
+//         >
+//           <div className="mb-12">
+//             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">
+//               Compare Our Plans
+//             </h2>
+//           </div>
+
+//           <div className=" border-b border-zinc-800 overflow-hidden">
+//             <div className="overflow-x-auto">
+//               <table className="w-full min-w-[600px]">
+//                 <thead>
+//                   <tr className="border-b border-zinc-800">
+//                     <th className="text-left p-6 sm:p-8 text-base sm:text-lg font-semibold text-gray-400">
+//                       Features
+//                     </th>
+//                     <th className="text-center p-6 sm:p-8 text-base sm:text-lg font-semibold text-white">
+//                       Website
+//                     </th>
+//                     <th className="text-center p-6 sm:p-8 text-base sm:text-lg font-semibold text-white">
+//                       App
+//                     </th>
+//                     <th className="text-center p-6 sm:p-8 text-base sm:text-lg font-semibold text-white">
+//                       Combo
+//                     </th>
+//                   </tr>
+//                 </thead>
+//                 <tbody>
+//                   {comparisonData.map((row, index) => (
+//                     <tr
+//                       key={index}
+//                       className="border-b border-zinc-800 hover:bg-zinc-800/50 transition-all duration-300"
+//                       style={{ transitionDelay: `${index * 50}ms` }}
+//                     >
+//                       <td className="p-6 sm:p-8 text-sm sm:text-base text-gray-300">
+//                         {row.feature}
+//                       </td>
+//                       <td className="p-6 sm:p-8 text-center">
+//                         {row.website === true && (
+//                           <Check className="w-5 h-5 sm:w-6 sm:h-6 text-green-500 mx-auto" />
+//                         )}
+//                         {row.website === false && (
+//                           <Minus className="w-5 h-5 sm:w-6 sm:h-6 text-gray-600 mx-auto" />
+//                         )}
+//                         {row.website === "addon" && (
+//                           <span className="figmaText text-xs sm:text-sm font-semibold">
+//                             Add-on
+//                           </span>
+//                         )}
+//                       </td>
+//                       <td className="p-6 sm:p-8 text-center">
+//                         {row.app === true && (
+//                           <Check className="w-5 h-5 sm:w-6 sm:h-6 text-green-500 mx-auto" />
+//                         )}
+//                         {row.app === false && (
+//                           <Minus className="w-5 h-5 sm:w-6 sm:h-6 text-gray-600 mx-auto" />
+//                         )}
+//                         {row.app === "addon" && (
+//                           <span className="figmaText text-xs sm:text-sm font-semibold">
+//                             Add-on
+//                           </span>
+//                         )}
+//                       </td>
+//                       <td className="p-6 sm:p-8 text-center">
+//                         {row.combo === true && (
+//                           <Check className="w-5 h-5 sm:w-6 sm:h-6 text-green-500 mx-auto" />
+//                         )}
+//                         {row.combo === false && (
+//                           <Minus className="w-5 h-5 sm:w-6 sm:h-6 text-gray-600 mx-auto" />
+//                         )}
+//                         {row.combo === "addon" && (
+//                           <span className="text-purple-500 text-xs sm:text-sm font-semibold">
+//                             Add-on
+//                           </span>
+//                         )}
+//                       </td>
+//                     </tr>
+//                   ))}
+//                 </tbody>
+//               </table>
+//             </div>
+//           </div>
+//         </div>
+//         <div className="relative z-10 max-w-6xl mx-auto px-6 py-20">
+//           <div className="flex items-center gap-8 mb-20">
+//             <h2 className="text-3xl md:text-4xl font-light whitespace-nowrap">
+//               Our Development
+//             </h2>
+//             <div className="flex-1 h-px bg-white/30 hidden md:block" />
+//           </div>
+
+//           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-32">
+//             {steps.map((step) => (
+//               <div
+//                 key={step.number}
+//                 className=" rounded-md bg-[#1c1c1e4b] p-6 text-center"
+//               >
+//                 <p className="text-2xl md:text-4xl font-semibold text-[#163B58] mb-3">
+//                   {step.number}
+//                 </p>
+//                 <h3 className="text-lg font-semibold mb-2">{step.title}</h3>
+//                 <p className="text-sm text-gray-400 leading-relaxed">
+//                   {step.description}
+//                 </p>
+//               </div>
+//             ))}
+//           </div>
+
+//           <div className="mb-16">
+//             <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-none tracking-tight">
+//               Common
+//               <br />
+//               Question
+//             </h2>
+//           </div>
+
+//           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-2">
+//             {faqs.map((faq, index) => (
+//               <div key={index} className="border-b border-blue-600/60 py-5">
+//                 <button
+//                   onClick={() =>
+//                     setOpenIndex(openIndex === index ? null : index)
+//                   }
+//                   className="flex items-center justify-between w-full text-left"
+//                 >
+//                   <span className="text-sm md:text-base text-gray-300">
+//                     {faq.question}
+//                   </span>
+//                   <span className="text-xl text-gray-400 ml-4 flex-shrink-0">
+//                     {openIndex === index ? "−" : "+"}
+//                   </span>
+//                 </button>
+//                 {openIndex === index && (
+//                   <p className="text-sm text-gray-500 mt-3">
+//                     Please contact us for more details about this topic.
+//                   </p>
+//                 )}
+//               </div>
+//             ))}
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Services;
+
+import React, { useState, useEffect } from "react";
+import {
+  Globe,
+  Smartphone,
+  Layers,
+  ArrowRight,
+  Check,
+  Minus,
+} from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+
+const Services = () => {
+  const navigate = useNavigate();
+  const [isVisible, setIsVisible] = useState(false);
+  const [openIndex, setOpenIndex] = useState(null);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
+  const services = [
+    {
+      id: 1,
+      icon: Globe,
+      title: "Website Development",
+      description:
+        "Modern, responsive websites that convert visitors into customers",
+      features: [
+        "Custom Responsive Design",
+        "Fast Loading Speed",
+        "Mobile-First Approach",
+        "Cross-Browser Compatible",
+        "SEO Optimization",
+        "Contact Forms",
+      ],
+      price: "₹8,000",
+      delivery: "2-4 Weeks",
+      support: "1-6 Months",
+      gradient: "from-purple-600 to-pink-600",
+      popular: false,
+      link: "/services/website",
     },
-  },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.4,
-      ease: "easeOut",
+    {
+      id: 2,
+      icon: Smartphone,
+      title: "App Development",
+      description:
+        "Native and cross-platform mobile applications for iOS and Android",
+      features: [
+        "Cross-Platform Development",
+        "Push Notifications",
+        "Native Performance",
+        "Offline Functionality",
+        "Cloud Backend Integration",
+        "In-App Purchases",
+      ],
+      price: "₹15,000",
+      delivery: "4-8 Weeks",
+      support: "1-6 Months",
+      gradient: "from-purple-600 to-pink-600",
+      popular: true,
+      link: "/services/app",
     },
-  },
-};
+    {
+      id: 3,
+      icon: Layers,
+      title: "Website + App Combo",
+      description: "Complete digital solution with website and mobile app",
+      features: [
+        "Responsive Website",
+        "Shared Backend",
+        "Cross-Platform Mobile App",
+        "Admin Dashboard",
+        "Unified Design System",
+        "SEO Optimization",
+      ],
+      price: "₹20,000",
+      delivery: "6-10 Weeks",
+      support: "2-12 Months",
+      gradient: "from-purple-600 to-pink-600",
+      popular: false,
+      link: "/services/combo",
+    },
+  ];
 
-export default function Services() {
+  const comparisonData = [
+    { feature: "Responsive Design", website: true, app: true, combo: true },
+    { feature: "SEO Optimization", website: true, app: false, combo: true },
+    { feature: "Cross Platform", website: false, app: true, combo: true },
+    { feature: "Push Notifications", website: false, app: true, combo: true },
+    { feature: "Admin Dashboard", website: "addon", app: "addon", combo: true },
+    {
+      feature: "Payment Integration",
+      website: "addon",
+      app: "addon",
+      combo: true,
+    },
+    { feature: "Cloud Backend", website: false, app: true, combo: true },
+    { feature: "Analytics", website: true, app: true, combo: true },
+    { feature: "Maintenance Support", website: true, app: true, combo: true },
+    { feature: "Priority Support", website: false, app: false, combo: true },
+  ];
+
+  const steps = [
+    {
+      number: "01",
+      title: "Discovery",
+      description:
+        "We understand your requirements, goals, and target audience",
+    },
+    {
+      number: "02",
+      title: "Design",
+      description: "Creating wireframes and visual designs for your approval",
+    },
+    {
+      number: "03",
+      title: "Development",
+      description: "Building your solution with clean, efficient code",
+    },
+    {
+      number: "04",
+      title: "Delivery",
+      description: "Testing, deployment, and handover with full support",
+    },
+  ];
+
+  const faqs = [
+    { question: "How long does it take to complete a project?" },
+    { question: "Do you provide source code?" },
+    { question: "What technologies do you use?" },
+    { question: "Do you offer maintenance after delivery?" },
+    { question: "Can I request changes during development?" },
+    { question: "What payment methods do you accept?" },
+  ];
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.25, 0.46, 0.45, 0.94],
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 50, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.7,
+        ease: [0.25, 0.46, 0.45, 0.94],
+      },
+    },
+  };
+
+  const stepVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: (i) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        delay: i * 0.15,
+        ease: [0.25, 0.46, 0.45, 0.94],
+      },
+    }),
+  };
+
+  const faqVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: (i) => ({
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.4,
+        delay: i * 0.08,
+        ease: "easeOut",
+      },
+    }),
+  };
+
+  const tableRowVariants = {
+    hidden: { opacity: 0, x: -30 },
+    visible: (i) => ({
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.4,
+        delay: i * 0.05,
+        ease: "easeOut",
+      },
+    }),
+  };
+
+  const renderCellValue = (value) => {
+    if (value === true) {
+      return (
+        <motion.div
+          initial={{ scale: 0 }}
+          whileInView={{ scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ type: "spring", stiffness: 300, damping: 20 }}
+        >
+          <Check className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-green-500 mx-auto" />
+        </motion.div>
+      );
+    }
+    if (value === false) {
+      return (
+        <Minus className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-gray-600 mx-auto" />
+      );
+    }
+    if (value === "addon") {
+      return (
+        <span className="figmaText text-[10px] sm:text-xs md:text-sm font-semibold">
+          Add-on
+        </span>
+      );
+    }
+    return null;
+  };
+
   return (
-    <div className="pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20">
-      <div className="max-w-7xl mx-auto container-padding">
-        <div className="text-center mb-4">
-          <motion.span
+    <div className="min-h-screen bg-black text-white py-12 sm:py-16 md:py-20 px-3 sm:px-4 md:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="mb-8 sm:mb-10"
+        >
+          <div className="flex flex-col sm:flex-row sm:items-start sm:gap-8 mb-4">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="flex-shrink-0"
+            >
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-light whitespace-nowrap mb-4 sm:mb-6">
+                Our Services
+              </h2>
+            </motion.div>
+            <motion.div
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="hidden sm:block flex-1 mt-2 origin-left"
+            >
+              <div className="h-px bg-gray-700 w-full mt-3" />
+            </motion.div>
+          </div>
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="inline-block px-4 py-2 glass-effect rounded-full text-primary-400 text-sm font-semibold mb-4"
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="text-gray-400 text-base sm:text-lg md:text-xl max-w-3xl leading-relaxed"
           >
-            What We Offer
-          </motion.span>
-        </div>
-
-        <SectionTitle
-          title="Our Services"
-          subtitle="Comprehensive digital solutions tailored to your business needs. We offer end-to-end development services to help your business grow."
-          gradient
-        />
+            Comprehensive digital solutions tailored to your business
+            <br className="hidden sm:block" />
+            needs. We offer end-to-end development services to help
+            <br className="hidden sm:block" /> your business grow.
+          </motion.p>
+        </motion.div>
 
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          animate="visible"
-          className="space-y-8 sm:space-y-12 mb-16 sm:mb-20"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          className="space-y-8 sm:space-y-10 md:space-y-12"
         >
           {services.map((service, index) => {
-            const ServiceIcon = service.icon;
+            const IconComponent = service.icon;
             return (
               <motion.div
                 key={service.id}
-                id={`service-${service.id}`}
                 variants={cardVariants}
-                className={`card-gradient rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-8 lg:p-10 overflow-hidden relative ${
-                  index === 1 ? "ring-2 ring-primary-500/50" : ""
-                }`}
+                whileHover={{ scale: 1.01 }}
+                transition={{ duration: 0.3 }}
+                className="relative rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-10"
               >
-                {index === 1 && (
-                  <div className="absolute top-4 right-4 sm:top-6 sm:right-6 px-3 py-1 bg-gradient-to-r from-primary-600 to-purple-600 rounded-full text-xs sm:text-sm font-semibold text-white">
-                    Most Popular
+                {service.popular ? (
+                  <div
+                    className="absolute inset-0 rounded-2xl sm:rounded-3xl pointer-events-none"
+                    style={{
+                      background:
+                        "linear-gradient(#0d0d0d, #0d0d0d) padding-box, linear-gradient(180deg, #a855f7 0%, #ec4899 100%) border-box",
+                      border: "1.5px solid transparent",
+                    }}
+                  />
+                ) : (
+                  <div
+                    className="absolute inset-0 rounded-2xl sm:rounded-3xl pointer-events-none"
+                    style={{
+                      border: "1.5px solid rgba(255,255,255,0.12)",
+                      background: "#0d0d0d",
+                    }}
+                  />
+                )}
+
+                {service.popular && (
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-20">
+                    <span className="bgCommon text-white px-6 py-2 rounded-full text-sm font-semibold">
+                      Most Popular
+                    </span>
                   </div>
                 )}
 
-                <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-primary-500/10 to-purple-500/10 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none" />
-
-                <div className="relative">
-                  <div className="flex flex-col lg:flex-row lg:items-start gap-6 lg:gap-10">
-                    <div className="flex-shrink-0">
-                      <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-primary-500/20 to-purple-500/20 rounded-2xl flex items-center justify-center">
-                        <ServiceIcon className="w-8 h-8 sm:w-10 sm:h-10 text-primary-400" />
-                      </div>
+                <div className="relative z-10 flex flex-col lg:flex-row lg:items-start gap-4 sm:gap-6 md:gap-8">
+                  <div>
+                    <div
+                      className={`w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl bg-gradient-to-br ${service.gradient} flex items-center justify-center`}
+                    >
+                      <IconComponent className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 text-white" />
                     </div>
+                  </div>
 
-                    <div className="flex-1">
-                      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4">
+                  <div className="flex-grow space-y-4 sm:space-y-5 md:space-y-6">
+                    <div>
+                      <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2 sm:mb-3">
                         {service.title}
                       </h2>
-                      <p className="text-gray-400 text-sm sm:text-base md:text-lg mb-6 max-w-3xl">
+                      <p className="text-gray-400 text-sm sm:text-base md:text-lg">
                         {service.description}
                       </p>
+                    </div>
 
-                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 mb-6 sm:mb-8">
-                        {service.features.slice(0, 6).map((feature, idx) => (
-                          <div
-                            key={idx}
-                            className="flex items-center text-gray-300 text-sm sm:text-base"
-                          >
-                            <div className="w-5 h-5 rounded-full bg-primary-500/20 flex items-center justify-center mr-2 flex-shrink-0">
-                              <HiCheck className="w-3 h-3 text-primary-400" />
-                            </div>
+                    <motion.div
+                      variants={containerVariants}
+                      className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 md:gap-4"
+                    >
+                      {service.features.map((feature, idx) => (
+                        <div className="flex items-center gap-2">
+                          <Check className="w-4 h-4 sm:w-5 sm:h-5 text-black bg-white rounded-full flex-shrink-0" />
+                          <span className="text-xs sm:text-sm md:text-base text-gray-300">
                             {feature}
-                          </div>
-                        ))}
-                      </div>
+                          </span>
+                        </div>
+                      ))}
+                    </motion.div>
 
-                      <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-6 sm:mb-8">
-                        <div className="glass-effect rounded-xl p-4 sm:p-5 flex-1">
-                          <div className="text-xs sm:text-sm text-gray-400 mb-1">
-                            Starting from
-                          </div>
-                          <div className="text-2xl sm:text-3xl font-bold gradient-text">
-                            ₹{service.pricing[0].price}
-                          </div>
-                        </div>
-                        <div className="glass-effect rounded-xl p-4 sm:p-5 flex-1">
-                          <div className="text-xs sm:text-sm text-gray-400 mb-1">
-                            Delivery Time
-                          </div>
-                          <div className="text-lg sm:text-xl font-bold text-white">
-                            {service.id === "website"
-                              ? "2-4 Weeks"
-                              : service.id === "app"
-                                ? "4-8 Weeks"
-                                : "6-10 Weeks"}
-                          </div>
-                        </div>
-                        <div className="glass-effect rounded-xl p-4 sm:p-5 flex-1">
-                          <div className="text-xs sm:text-sm text-gray-400 mb-1">
-                            Support
-                          </div>
-                          <div className="text-lg sm:text-xl font-bold text-white">
-                            {service.id === "website"
-                              ? "1-6 Months"
-                              : service.id === "app"
-                                ? "1-6 Months"
-                                : "2-12 Months"}
-                          </div>
-                        </div>
-                      </div>
+                    <div className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-4">
+                      <motion.div
+                        whileHover={{ scale: 1.02 }}
+                        className="bg-black/50 rounded-lg sm:rounded-xl p-2 sm:p-3 md:p-4"
+                      >
+                        <p className="text-gray-500 text-[10px] sm:text-xs md:text-sm mb-0.5 sm:mb-1">
+                          Starting from
+                        </p>
+                        <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold figmaText">
+                          {service.price}
+                        </p>
+                      </motion.div>
 
-                      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                        <Link to={service.link} className="flex-1 sm:flex-none">
-                          <button className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-primary-600 to-blue-600 rounded-full font-semibold text-white text-sm sm:text-base shadow-lg shadow-primary-500/30 hover:shadow-xl hover:shadow-primary-500/40 transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2">
-                            View Details
-                            <HiArrowRight className="w-4 h-4" />
-                          </button>
-                        </Link>
-                        <Link to="/contact" className="flex-1 sm:flex-none">
-                          <button className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 glass-effect rounded-full font-semibold text-white text-sm sm:text-base hover:bg-white/10 transition-all duration-300 hover:scale-105 active:scale-95">
-                            Get Quote
-                          </button>
-                        </Link>
-                      </div>
+                      <motion.div
+                        whileHover={{ scale: 1.02 }}
+                        className="bg-black/50 rounded-lg sm:rounded-xl p-2 sm:p-3 md:p-4"
+                      >
+                        <p className="text-gray-500 text-[10px] sm:text-xs md:text-sm mb-0.5 sm:mb-1">
+                          Delivery Time
+                        </p>
+                        <p className="text-sm sm:text-lg md:text-xl lg:text-2xl font-semibold text-white">
+                          {service.delivery}
+                        </p>
+                      </motion.div>
+
+                      <motion.div
+                        whileHover={{ scale: 1.02 }}
+                        className="bg-black/50 rounded-lg sm:rounded-xl p-2 sm:p-3 md:p-4"
+                      >
+                        <p className="text-gray-500 text-[10px] sm:text-xs md:text-sm mb-0.5 sm:mb-1">
+                          Support
+                        </p>
+                        <p className="text-sm sm:text-lg md:text-xl lg:text-2xl font-semibold text-white">
+                          {service.support}
+                        </p>
+                      </motion.div>
+                    </div>
+
+                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2 sm:pt-4">
+                      <motion.button
+                        whileHover={{ scale: 1.03 }}
+                        whileTap={{ scale: 0.98 }}
+                        onClick={() => navigate(service.link)}
+                        className={`flex items-center justify-center gap-2 bg-gradient-to-r ${service.gradient} text-white px-5 sm:px-6 md:px-8 py-3 sm:py-3.5 md:py-4 rounded-full font-semibold text-sm sm:text-base transition-opacity`}
+                      >
+                        View Details
+                        <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
+                      </motion.button>
+
+                      <motion.button
+                        whileHover={{
+                          scale: 1.03,
+                          backgroundColor: "#fff",
+                          color: "#000",
+                        }}
+                        whileTap={{ scale: 0.98 }}
+                        onClick={() => navigate("/contact")}
+                        className="flex items-center justify-center gap-2 bg-transparent border-2 border-white/50 text-white px-5 sm:px-6 md:px-8 py-3 sm:py-3.5 md:py-4 rounded-full font-semibold text-sm sm:text-base transition-all"
+                      >
+                        Get Quote
+                      </motion.button>
                     </div>
                   </div>
                 </div>
@@ -157,290 +902,194 @@ export default function Services() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16 sm:mb-20"
+          transition={{ duration: 0.8 }}
+          className="mt-16 sm:mt-20"
         >
-          <h2 className="text-2xl sm:text-3xl font-bold text-white text-center mb-8 sm:mb-12">
-            Compare Our Plans
-          </h2>
-
-          <div className="overflow-x-auto">
-            <table className="w-full min-w-[600px]">
-              <thead>
-                <tr className="border-b border-white/10">
-                  <th className="text-left py-4 px-4 text-gray-400 font-medium text-sm sm:text-base">
-                    Features
-                  </th>
-                  {services.map((service) => (
-                    <th
-                      key={service.id}
-                      className="text-center py-4 px-4 text-white font-semibold text-sm sm:text-base"
-                    >
-                      {service.title.split(" ")[0]}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {[
-                  {
-                    feature: "Responsive Design",
-                    website: true,
-                    app: true,
-                    combo: true,
-                  },
-                  {
-                    feature: "SEO Optimization",
-                    website: true,
-                    app: false,
-                    combo: true,
-                  },
-                  {
-                    feature: "Cross Platform",
-                    website: false,
-                    app: true,
-                    combo: true,
-                  },
-                  {
-                    feature: "Push Notifications",
-                    website: false,
-                    app: true,
-                    combo: true,
-                  },
-                  {
-                    feature: "Admin Dashboard",
-                    website: "Add-on",
-                    app: "Add-on",
-                    combo: true,
-                  },
-                  {
-                    feature: "Payment Integration",
-                    website: "Add-on",
-                    app: "Add-on",
-                    combo: true,
-                  },
-                  {
-                    feature: "Cloud Backend",
-                    website: false,
-                    app: true,
-                    combo: true,
-                  },
-                  {
-                    feature: "Analytics",
-                    website: true,
-                    app: true,
-                    combo: true,
-                  },
-                  {
-                    feature: "Maintenance Support",
-                    website: true,
-                    app: true,
-                    combo: true,
-                  },
-                  {
-                    feature: "Priority Support",
-                    website: false,
-                    app: false,
-                    combo: true,
-                  },
-                ].map((row, index) => (
-                  <tr
-                    key={index}
-                    className="border-b border-white/5 hover:bg-white/5 transition-colors"
-                  >
-                    <td className="py-3 sm:py-4 px-4 text-gray-300 text-sm sm:text-base">
-                      {row.feature}
-                    </td>
-                    <td className="py-3 sm:py-4 px-4 text-center">
-                      {row.website === true ? (
-                        <HiCheck className="w-5 h-5 text-green-400 mx-auto" />
-                      ) : row.website === false ? (
-                        <span className="text-gray-500">—</span>
-                      ) : (
-                        <span className="text-xs sm:text-sm text-primary-400">
-                          {row.website}
-                        </span>
-                      )}
-                    </td>
-                    <td className="py-3 sm:py-4 px-4 text-center">
-                      {row.app === true ? (
-                        <HiCheck className="w-5 h-5 text-green-400 mx-auto" />
-                      ) : row.app === false ? (
-                        <span className="text-gray-500">—</span>
-                      ) : (
-                        <span className="text-xs sm:text-sm text-primary-400">
-                          {row.app}
-                        </span>
-                      )}
-                    </td>
-                    <td className="py-3 sm:py-4 px-4 text-center">
-                      {row.combo === true ? (
-                        <HiCheck className="w-5 h-5 text-green-400 mx-auto" />
-                      ) : row.combo === false ? (
-                        <span className="text-gray-500">—</span>
-                      ) : (
-                        <span className="text-xs sm:text-sm text-primary-400">
-                          {row.combo}
-                        </span>
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16 sm:mb-20"
-        >
-          <h2 className="text-2xl sm:text-3xl font-bold text-white text-center mb-8 sm:mb-12">
-            Our Development Process
-          </h2>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            {[
-              {
-                step: "01",
-                title: "Discovery",
-                description:
-                  "We understand your requirements, goals, and target audience",
-              },
-              {
-                step: "02",
-                title: "Design",
-                description:
-                  "Creating wireframes and visual designs for your approval",
-              },
-              {
-                step: "03",
-                title: "Development",
-                description:
-                  "Building your solution with clean, efficient code",
-              },
-              {
-                step: "04",
-                title: "Delivery",
-                description:
-                  "Testing, deployment, and handover with full support",
-              },
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="card-gradient rounded-xl p-5 sm:p-6 text-center relative overflow-hidden group hover:-translate-y-2 transition-all duration-300"
-              >
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary-500 to-purple-500 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
-                <div className="text-4xl sm:text-5xl font-bold text-primary-500/20 mb-3">
-                  {item.step}
-                </div>
-                <h3 className="text-lg sm:text-xl font-bold text-white mb-2">
-                  {item.title}
-                </h3>
-                <p className="text-gray-400 text-sm sm:text-base">
-                  {item.description}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16 sm:mb-20"
-        >
-          <h2 className="text-2xl sm:text-3xl font-bold text-white text-center mb-8 sm:mb-12">
-            Frequently Asked Questions
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 max-w-4xl mx-auto">
-            {[
-              {
-                q: "How long does it take to complete a project?",
-                a: "Website projects typically take 2-4 weeks, mobile apps 4-8 weeks, and combo packages 6-10 weeks depending on complexity.",
-              },
-              {
-                q: "Do you provide source code?",
-                a: "Yes, you get complete ownership of the source code upon project completion and final payment.",
-              },
-              {
-                q: "What technologies do you use?",
-                a: "We use modern technologies like React, Next.js, Node.js, React Native, Flutter, and more based on project requirements.",
-              },
-              {
-                q: "Do you offer maintenance after delivery?",
-                a: "Yes, we offer flexible maintenance packages starting from ₹2,000/month to keep your project updated and secure.",
-              },
-              {
-                q: "Can I request changes during development?",
-                a: "Absolutely! We follow an agile approach with regular updates and feedback sessions throughout the development process.",
-              },
-              {
-                q: "What payment methods do you accept?",
-                a: "We accept bank transfers, UPI, and online payments. We typically work with 50% advance and 50% on delivery.",
-              },
-            ].map((faq, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
-                className="card-gradient rounded-xl p-5 sm:p-6"
-              >
-                <h3 className="text-base sm:text-lg font-bold text-white mb-2">
-                  {faq.q}
-                </h3>
-                <p className="text-gray-400 text-sm sm:text-base">{faq.a}</p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center card-gradient rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-12 relative overflow-hidden"
-        >
-          <div className="absolute inset-0 bg-gradient-to-r from-primary-600/10 to-purple-600/10" />
-          <div className="relative">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4">
-              Ready to Start Your Project?
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-8 sm:mb-12"
+          >
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+              Compare Our Plans
             </h2>
-            <p className="text-gray-400 text-sm sm:text-base md:text-lg mb-6 sm:mb-8 max-w-2xl mx-auto">
-              Let's discuss your requirements and create something amazing
-              together. Get a free consultation and quote today!
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-              <Link to="/contact">
-                <button className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-primary-600 to-blue-600 rounded-full font-semibold text-white shadow-lg shadow-primary-500/30 hover:shadow-xl hover:shadow-primary-500/40 transition-all duration-300 hover:scale-105 active:scale-95">
-                  Get Free Quote
-                </button>
-              </Link>
-              <a
-                href="https://wa.me/918799263376"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <button className="w-full sm:w-auto px-8 py-4 glass-effect rounded-full font-semibold text-white hover:bg-white/10 transition-all duration-300 hover:scale-105 active:scale-95">
-                  Chat on WhatsApp
-                </button>
-              </a>
+          </motion.div>
+
+          <div className="border-b border-zinc-800 overflow-hidden rounded-lg sm:rounded-none">
+            <div className="overflow-x-auto scrollbar-hide">
+              <table className="w-full min-w-[500px] sm:min-w-[600px]">
+                <thead>
+                  <tr className="border-b border-zinc-800">
+                    <th className="text-left p-3 sm:p-4 md:p-6 lg:p-8 text-xs sm:text-sm md:text-base lg:text-lg font-semibold text-gray-400">
+                      Features
+                    </th>
+                    <th className="text-center p-3 sm:p-4 md:p-6 lg:p-8 text-xs sm:text-sm md:text-base lg:text-lg font-semibold text-white">
+                      Website
+                    </th>
+                    <th className="text-center p-3 sm:p-4 md:p-6 lg:p-8 text-xs sm:text-sm md:text-base lg:text-lg font-semibold text-white">
+                      App
+                    </th>
+                    <th className="text-center p-3 sm:p-4 md:p-6 lg:p-8 text-xs sm:text-sm md:text-base lg:text-lg font-semibold text-white">
+                      Combo
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {comparisonData.map((row, index) => (
+                    <motion.tr
+                      key={index}
+                      custom={index}
+                      variants={tableRowVariants}
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: true }}
+                      className="border-b border-zinc-800 hover:bg-zinc-800/50 transition-all duration-300"
+                    >
+                      <td className="p-3 sm:p-4 md:p-6 lg:p-8 text-xs sm:text-sm md:text-base text-gray-300">
+                        {row.feature}
+                      </td>
+                      <td className="p-3 sm:p-4 md:p-6 lg:p-8 text-center">
+                        {renderCellValue(row.website)}
+                      </td>
+                      <td className="p-3 sm:p-4 md:p-6 lg:p-8 text-center">
+                        {renderCellValue(row.app)}
+                      </td>
+                      <td className="p-3 sm:p-4 md:p-6 lg:p-8 text-center">
+                        {renderCellValue(row.combo)}
+                      </td>
+                    </motion.tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
         </motion.div>
+
+        <div className="relative z-10 max-w-6xl mx-auto px-0 sm:px-4 md:px-6 pb-6 sm:pb-8 md:pb-10 pt-12 sm:pt-16 md:pt-20">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8 mb-12 sm:mb-16 md:mb-20"
+          >
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-light whitespace-nowrap">
+              Our Development
+            </h2>
+            <motion.div
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="flex-1 h-px bg-white/30 hidden sm:block origin-left"
+            />
+          </motion.div>
+
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-20 sm:mb-28 md:mb-32"
+          >
+            {steps.map((step, index) => (
+              <motion.div
+                key={step.number}
+                custom={index}
+                variants={stepVariants}
+                whileHover={{ y: -5, scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+                className="rounded-md bg-[#1c1c1e4b] p-4 sm:p-5 md:p-6 text-center"
+              >
+                <motion.p
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-[#163B58] mb-2 sm:mb-3"
+                >
+                  {step.number}
+                </motion.p>
+                <h3 className="text-sm sm:text-base md:text-lg font-semibold mb-1 sm:mb-2">
+                  {step.title}
+                </h3>
+                <p className="text-[10px] sm:text-xs md:text-sm text-gray-400 leading-relaxed">
+                  {step.description}
+                </p>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="mb-10 sm:mb-12 md:mb-16"
+          >
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-none tracking-tight">
+              Common Question
+            </h2>
+          </motion.div>
+
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-x-8 lg:gap-x-16 gap-y-1 sm:gap-y-2"
+          >
+            {faqs.map((faq, index) => (
+              <motion.div
+                key={index}
+                custom={index}
+                variants={faqVariants}
+                className="border-b border-blue-600/60 py-3 sm:py-4 md:py-5"
+              >
+                <motion.button
+                  whileHover={{ x: 3 }}
+                  whileTap={{ scale: 0.99 }}
+                  onClick={() =>
+                    setOpenIndex(openIndex === index ? null : index)
+                  }
+                  className="flex items-center justify-between w-full text-left"
+                >
+                  <span className="text-xs sm:text-sm md:text-base text-gray-300 pr-4">
+                    {faq.question}
+                  </span>
+                  <motion.span
+                    animate={{ rotate: openIndex === index ? 180 : 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="text-lg sm:text-xl text-gray-400 flex-shrink-0"
+                  >
+                    {openIndex === index ? "−" : "+"}
+                  </motion.span>
+                </motion.button>
+                <AnimatePresence>
+                  {openIndex === index && (
+                    <motion.p
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="text-xs sm:text-sm text-gray-500 mt-2 sm:mt-3 overflow-hidden"
+                    >
+                      Please contact us for more details about this topic.
+                    </motion.p>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
       </div>
     </div>
   );
-}
+};
+
+export default Services;

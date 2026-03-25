@@ -5,6 +5,7 @@ import { Autoplay, FreeMode } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/free-mode";
+import CavnexReveal from "./CavnexReveal";
 
 const testimonials = [
   {
@@ -190,10 +191,10 @@ export default function Testimonials() {
         </Swiper>
       </div>
 
-      {/* <div className="mt-10">
+      <div className="mt-10">
         {" "}
         <CavnexReveal />
-      </div> */}
+      </div>
     </section>
   );
 }

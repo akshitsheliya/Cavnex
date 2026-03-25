@@ -105,3 +105,27 @@ html.lenis body {
     @apply px-4 sm:px-6 lg:px-8;
   }
 }
+
+.figmaText {
+  background: linear-gradient(
+    270deg,
+    #ecbfbf 7.21%,
+    #5c24ff 45.67%,
+    #d94fd5 94.23%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bgCommon {
+  background: linear-gradient(90deg, #d95db0 0%, #3344dc 100%);
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
