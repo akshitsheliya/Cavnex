@@ -191,7 +191,7 @@ export default function Testimonials() {
         </Swiper>
       </div>
 
-      <div className="mt-10">
+      <div className="mt-10 hidden sm:block">
         {" "}
         <CavnexReveal />
       </div>
