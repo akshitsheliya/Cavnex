@@ -1,474 +1,3 @@
-// import React, { useState, useEffect } from "react";
-// import {
-//   Globe,
-//   Smartphone,
-//   Layers,
-//   ArrowRight,
-//   Check,
-//   Minus,
-// } from "lucide-react";
-// import { useNavigate } from "react-router-dom";
-// import { motion } from "framer-motion";
-
-// const Services = () => {
-//   const navigate = useNavigate();
-//   const [isVisible, setIsVisible] = useState(false);
-//   const [openIndex, setOpenIndex] = useState(null);
-//   useEffect(() => {
-//     setIsVisible(true);
-//   }, []);
-
-//   const services = [
-//     {
-//       id: 1,
-//       icon: Globe,
-//       title: "Website Development",
-//       description:
-//         "Modern, responsive websites that convert visitors into customers",
-//       features: [
-//         "Custom Responsive Design",
-//         "Fast Loading Speed",
-//         "Mobile-First Approach",
-//         "Cross-Browser Compatible",
-//         "SEO Optimization",
-//         "Contact Forms",
-//       ],
-//       price: "₹8,000",
-//       delivery: "2-4 Weeks",
-//       support: "1-6 Months",
-//       gradient: "from-purple-600 to-pink-600",
-//       popular: false,
-//       link: "/services/website",
-//     },
-//     {
-//       id: 2,
-//       icon: Smartphone,
-//       title: "App Development",
-//       description:
-//         "Native and cross-platform mobile applications for iOS and Android",
-//       features: [
-//         "Cross-Platform Development",
-//         "Push Notifications",
-//         "Native Performance",
-//         "Offline Functionality",
-//         "Cloud Backend Integration",
-//         "In-App Purchases",
-//       ],
-//       price: "₹15,000",
-//       delivery: "4-8 Weeks",
-//       support: "1-6 Months",
-//       gradient: "from-purple-600 to-pink-600",
-//       popular: true,
-//       link: "/services/app",
-//     },
-//     {
-//       id: 3,
-//       icon: Layers,
-//       title: "Website + App Combo",
-//       description: "Complete digital solution with website and mobile app",
-//       features: [
-//         "Responsive Website",
-//         "Shared Backend",
-//         "Cross-Platform Mobile App",
-//         "Admin Dashboard",
-//         "Unified Design System",
-//         "SEO Optimization",
-//       ],
-//       price: "₹20,000",
-//       delivery: "6-10 Weeks",
-//       support: "2-12 Months",
-//       gradient: "from-purple-600 to-pink-600",
-//       popular: false,
-//       link: "/services/combo",
-//     },
-//   ];
-//   const comparisonData = [
-//     {
-//       feature: "Responsive Design",
-//       website: true,
-//       app: true,
-//       combo: true,
-//     },
-//     {
-//       feature: "SEO Optimization",
-//       website: true,
-//       app: false,
-//       combo: true,
-//     },
-//     {
-//       feature: "Cross Platform",
-//       website: false,
-//       app: true,
-//       combo: true,
-//     },
-//     {
-//       feature: "Push Notifications",
-//       website: false,
-//       app: true,
-//       combo: true,
-//     },
-//     {
-//       feature: "Admin Dashboard",
-//       website: "addon",
-//       app: "addon",
-//       combo: true,
-//     },
-//     {
-//       feature: "Payment Integration",
-//       website: "addon",
-//       app: "addon",
-//       combo: true,
-//     },
-//     {
-//       feature: "Cloud Backend",
-//       website: false,
-//       app: true,
-//       combo: true,
-//     },
-//     {
-//       feature: "Analytics",
-//       website: true,
-//       app: true,
-//       combo: true,
-//     },
-//     {
-//       feature: "Maintenance Support",
-//       website: true,
-//       app: true,
-//       combo: true,
-//     },
-//     {
-//       feature: "Priority Support",
-//       website: false,
-//       app: false,
-//       combo: true,
-//     },
-//   ];
-//   const steps = [
-//     {
-//       number: "01",
-//       title: "Discovery",
-//       description:
-//         "We understand your requirements, goals, and target audience",
-//     },
-//     {
-//       number: "02",
-//       title: "Design",
-//       description: "Creating wireframes and visual designs for your approval",
-//     },
-//     {
-//       number: "03",
-//       title: "Development",
-//       description: "Building your solution with clean, efficient code",
-//     },
-//     {
-//       number: "04",
-//       title: "Delivery",
-//       description: "Testing, deployment, and handover with full support",
-//     },
-//   ];
-
-//   const faqs = [
-//     { question: "How long does it take to complete a project?" },
-//     { question: "Do you provide source code?" },
-//     { question: "What technologies do you use?" },
-//     { question: "Do you offer maintenance after delivery?" },
-//     { question: "Can I request changes during development?" },
-//     { question: "What payment methods do you accept?" },
-//   ];
-//   return (
-//     <div className="min-h-screen bg-black text-white py-20 px-4 sm:px-6 lg:px-8">
-//       <div className="max-w-6xl mx-auto  ">
-//         <motion.div
-//           initial={{ opacity: 0, y: 20 }}
-//           whileInView={{ opacity: 1, y: 0 }}
-//           viewport={{ once: true }}
-//           transition={{ duration: 0.7 }}
-//           className="mb-10"
-//         >
-//           <div className="flex flex-col sm:flex-row sm:items-start sm:gap-8 mb-4">
-//             <div className="flex-shrink-0">
-//               <h2 className="text-3xl md:text-4xl font-light whitespace-nowrap mb-6 ">
-//                 Our Services
-//               </h2>
-//             </div>
-//             <div className="hidden sm:block flex-1 mt-2">
-//               <div className="h-px bg-gray-700 w-full mt-3" />
-//             </div>
-//           </div>
-//           <p className="text-gray-400 text-lg sm:text-xl max-w-3xl">
-//             Comprehensive digital solutions tailored to your business <br />
-//             needs. We offer end-to-end development services to help <br /> your
-//             business grow.
-//           </p>{" "}
-//         </motion.div>
-//         <div className="space-y-12">
-//           {services.map((service) => {
-//             const IconComponent = service.icon;
-//             return (
-//               <div
-//                 key={service.id}
-//                 className="relative rounded-3xl p-6 sm:p-8 lg:p-10"
-//               >
-//                 {/* Border Layer */}
-//                 {service.popular ? (
-//                   <div
-//                     className="absolute inset-0 rounded-3xl pointer-events-none"
-//                     style={{
-//                       background:
-//                         "linear-gradient(#0d0d0d, #0d0d0d) padding-box, linear-gradient(180deg, #a855f7 0%, #ec4899 100%) border-box",
-//                       border: "1.5px solid transparent",
-//                     }}
-//                   />
-//                 ) : (
-//                   <div
-//                     className="absolute inset-0 rounded-3xl pointer-events-none"
-//                     style={{
-//                       border: "1.5px solid rgba(255,255,255,0.12)",
-//                       background: "#0d0d0d",
-//                     }}
-//                   />
-//                 )}
-
-//                 {/* Most Popular Badge */}
-//                 {service.popular && (
-//                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-20">
-//                     <span className="bgCommon text-white px-6 py-2 rounded-full text-sm font-semibold">
-//                       Most Popular
-//                     </span>
-//                   </div>
-//                 )}
-
-//                 {/* Content */}
-//                 <div className="relative z-10 flex flex-col lg:flex-row lg:items-start gap-8">
-//                   <div className="flex-shrink-0">
-//                     <div
-//                       className={`w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br ${service.gradient} flex items-center justify-center`}
-//                     >
-//                       <IconComponent className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
-//                     </div>
-//                   </div>
-
-//                   <div className="flex-grow space-y-6">
-//                     <div>
-//                       <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3">
-//                         {service.title}
-//                       </h2>
-//                       <p className="text-gray-400 text-base sm:text-lg">
-//                         {service.description}
-//                       </p>
-//                     </div>
-
-//                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-//                       {service.features.map((feature, index) => (
-//                         <div key={index} className="flex items-center gap-2">
-//                           <Check className="w-5 h-5 text-black bg-white rounded-full flex-shrink-0" />
-//                           <span className="text-sm sm:text-base text-gray-300">
-//                             {feature}
-//                           </span>
-//                         </div>
-//                       ))}
-//                     </div>
-
-//                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-//                       <div className="bg-black/50 rounded-xl p-4 ">
-//                         <p className="text-gray-500 text-sm mb-1">
-//                           Starting from
-//                         </p>
-//                         <p className="text-2xl sm:text-3xl font-bold figmaText">
-//                           {service.price}
-//                         </p>
-//                       </div>
-
-//                       <div className="bg-black/50 rounded-xl p-4">
-//                         <p className="text-gray-500 text-sm mb-1">
-//                           Delivery Time
-//                         </p>
-//                         <p className="text-xl sm:text-2xl font-semibold text-white">
-//                           {service.delivery}
-//                         </p>
-//                       </div>
-
-//                       <div className="bg-black/50 rounded-xl p-4">
-//                         <p className="text-gray-500 text-sm mb-1">Support</p>
-//                         <p className="text-xl sm:text-2xl font-semibold text-white">
-//                           {service.support}
-//                         </p>
-//                       </div>
-//                     </div>
-
-//                     <div className="flex flex-col sm:flex-row gap-4 pt-4">
-//                       <button
-//                         onClick={() => navigate(service.link)}
-//                         className={`flex items-center justify-center gap-2 bg-gradient-to-r ${service.gradient} text-white px-8 py-4 rounded-full font-semibold hover:opacity-90 transition-opacity`}
-//                       >
-//                         View Details
-//                         <ArrowRight className="w-5 h-5" />
-//                       </button>
-
-//                       <button
-//                         onClick={() => navigate("/contact")}
-//                         className="flex items-center justify-center gap-2 bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-black transition-all"
-//                       >
-//                         Get Quote
-//                       </button>
-//                     </div>
-//                   </div>
-//                 </div>
-//               </div>
-//             );
-//           })}
-//         </div>{" "}
-//         <div
-//           className={`transition-all duration-1000 mt-20 transform ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
-//           style={{ transitionDelay: "600ms" }}
-//         >
-//           <div className="mb-12">
-//             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">
-//               Compare Our Plans
-//             </h2>
-//           </div>
-
-//           <div className=" border-b border-zinc-800 overflow-hidden">
-//             <div className="overflow-x-auto">
-//               <table className="w-full min-w-[600px]">
-//                 <thead>
-//                   <tr className="border-b border-zinc-800">
-//                     <th className="text-left p-6 sm:p-8 text-base sm:text-lg font-semibold text-gray-400">
-//                       Features
-//                     </th>
-//                     <th className="text-center p-6 sm:p-8 text-base sm:text-lg font-semibold text-white">
-//                       Website
-//                     </th>
-//                     <th className="text-center p-6 sm:p-8 text-base sm:text-lg font-semibold text-white">
-//                       App
-//                     </th>
-//                     <th className="text-center p-6 sm:p-8 text-base sm:text-lg font-semibold text-white">
-//                       Combo
-//                     </th>
-//                   </tr>
-//                 </thead>
-//                 <tbody>
-//                   {comparisonData.map((row, index) => (
-//                     <tr
-//                       key={index}
-//                       className="border-b border-zinc-800 hover:bg-zinc-800/50 transition-all duration-300"
-//                       style={{ transitionDelay: `${index * 50}ms` }}
-//                     >
-//                       <td className="p-6 sm:p-8 text-sm sm:text-base text-gray-300">
-//                         {row.feature}
-//                       </td>
-//                       <td className="p-6 sm:p-8 text-center">
-//                         {row.website === true && (
-//                           <Check className="w-5 h-5 sm:w-6 sm:h-6 text-green-500 mx-auto" />
-//                         )}
-//                         {row.website === false && (
-//                           <Minus className="w-5 h-5 sm:w-6 sm:h-6 text-gray-600 mx-auto" />
-//                         )}
-//                         {row.website === "addon" && (
-//                           <span className="figmaText text-xs sm:text-sm font-semibold">
-//                             Add-on
-//                           </span>
-//                         )}
-//                       </td>
-//                       <td className="p-6 sm:p-8 text-center">
-//                         {row.app === true && (
-//                           <Check className="w-5 h-5 sm:w-6 sm:h-6 text-green-500 mx-auto" />
-//                         )}
-//                         {row.app === false && (
-//                           <Minus className="w-5 h-5 sm:w-6 sm:h-6 text-gray-600 mx-auto" />
-//                         )}
-//                         {row.app === "addon" && (
-//                           <span className="figmaText text-xs sm:text-sm font-semibold">
-//                             Add-on
-//                           </span>
-//                         )}
-//                       </td>
-//                       <td className="p-6 sm:p-8 text-center">
-//                         {row.combo === true && (
-//                           <Check className="w-5 h-5 sm:w-6 sm:h-6 text-green-500 mx-auto" />
-//                         )}
-//                         {row.combo === false && (
-//                           <Minus className="w-5 h-5 sm:w-6 sm:h-6 text-gray-600 mx-auto" />
-//                         )}
-//                         {row.combo === "addon" && (
-//                           <span className="text-purple-500 text-xs sm:text-sm font-semibold">
-//                             Add-on
-//                           </span>
-//                         )}
-//                       </td>
-//                     </tr>
-//                   ))}
-//                 </tbody>
-//               </table>
-//             </div>
-//           </div>
-//         </div>
-//         <div className="relative z-10 max-w-6xl mx-auto px-6 py-20">
-//           <div className="flex items-center gap-8 mb-20">
-//             <h2 className="text-3xl md:text-4xl font-light whitespace-nowrap">
-//               Our Development
-//             </h2>
-//             <div className="flex-1 h-px bg-white/30 hidden md:block" />
-//           </div>
-
-//           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-32">
-//             {steps.map((step) => (
-//               <div
-//                 key={step.number}
-//                 className=" rounded-md bg-[#1c1c1e4b] p-6 text-center"
-//               >
-//                 <p className="text-2xl md:text-4xl font-semibold text-[#163B58] mb-3">
-//                   {step.number}
-//                 </p>
-//                 <h3 className="text-lg font-semibold mb-2">{step.title}</h3>
-//                 <p className="text-sm text-gray-400 leading-relaxed">
-//                   {step.description}
-//                 </p>
-//               </div>
-//             ))}
-//           </div>
-
-//           <div className="mb-16">
-//             <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-none tracking-tight">
-//               Common
-//               <br />
-//               Question
-//             </h2>
-//           </div>
-
-//           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-2">
-//             {faqs.map((faq, index) => (
-//               <div key={index} className="border-b border-blue-600/60 py-5">
-//                 <button
-//                   onClick={() =>
-//                     setOpenIndex(openIndex === index ? null : index)
-//                   }
-//                   className="flex items-center justify-between w-full text-left"
-//                 >
-//                   <span className="text-sm md:text-base text-gray-300">
-//                     {faq.question}
-//                   </span>
-//                   <span className="text-xl text-gray-400 ml-4 flex-shrink-0">
-//                     {openIndex === index ? "−" : "+"}
-//                   </span>
-//                 </button>
-//                 {openIndex === index && (
-//                   <p className="text-sm text-gray-500 mt-3">
-//                     Please contact us for more details about this topic.
-//                   </p>
-//                 )}
-//               </div>
-//             ))}
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Services;
-
 import React, { useState, useEffect } from "react";
 import {
   Globe,
@@ -508,7 +37,7 @@ const Services = () => {
       price: "₹8,000",
       delivery: "2-4 Weeks",
       support: "1-6 Months",
-      gradient: "from-purple-600 to-pink-600",
+
       popular: false,
       link: "/services/website",
     },
@@ -529,7 +58,7 @@ const Services = () => {
       price: "₹15,000",
       delivery: "4-8 Weeks",
       support: "1-6 Months",
-      gradient: "from-purple-600 to-pink-600",
+
       popular: true,
       link: "/services/app",
     },
@@ -549,7 +78,7 @@ const Services = () => {
       price: "₹20,000",
       delivery: "6-10 Weeks",
       support: "2-12 Months",
-      gradient: "from-purple-600 to-pink-600",
+
       popular: false,
       link: "/services/combo",
     },
@@ -701,7 +230,7 @@ const Services = () => {
     }
     if (value === "addon") {
       return (
-        <span className="figmaText text-[10px] sm:text-xs md:text-sm font-semibold">
+        <span className="gradient-text text-[10px] sm:text-xs md:text-sm font-semibold">
           Add-on
         </span>
       );
@@ -802,7 +331,7 @@ const Services = () => {
                 <div className="relative z-10 flex flex-col lg:flex-row lg:items-start gap-4 sm:gap-6 md:gap-8">
                   <div>
                     <div
-                      className={`w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl bg-gradient-to-br ${service.gradient} flex items-center justify-center`}
+                      className={`w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl my-bg-gradient flex items-center justify-center`}
                     >
                       <IconComponent className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 text-white" />
                     </div>
@@ -824,7 +353,7 @@ const Services = () => {
                     >
                       {service.features.map((feature, idx) => (
                         <div className="flex items-center gap-2">
-                          <Check className="w-4 h-4 sm:w-5 sm:h-5 text-black bg-white rounded-full flex-shrink-0" />
+                          <Check className="w-3 h-3 sm:w-4 sm:h-4 text-black bg-white rounded-full flex-shrink-0" />
                           <span className="text-xs sm:text-sm md:text-base text-gray-300">
                             {feature}
                           </span>
@@ -875,7 +404,7 @@ const Services = () => {
                         whileHover={{ scale: 1.03 }}
                         whileTap={{ scale: 0.98 }}
                         onClick={() => navigate(service.link)}
-                        className={`flex items-center justify-center gap-2 bg-gradient-to-r ${service.gradient} text-white px-5 sm:px-6 md:px-8 py-3 sm:py-3.5 md:py-4 rounded-full font-semibold text-sm sm:text-base transition-opacity`}
+                        className={`flex items-center justify-center gap-2 my-bg-gradient text-white px-5 sm:px-6 md:px-8 py-3 sm:py-3.5 md:py-4 rounded-full font-semibold text-sm sm:text-base transition-opacity`}
                       >
                         View Details
                         <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -916,7 +445,8 @@ const Services = () => {
             className="mb-8 sm:mb-12"
           >
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-              Compare Our Plans
+              <span className="inline sm:block">Compare</span>
+              <span className="inline sm:block sm:mt-3"> Our Plans</span>
             </h2>
           </motion.div>
 

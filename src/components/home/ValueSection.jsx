@@ -30,9 +30,9 @@ export default function ValueSection() {
     },
     {
       number: "05",
-      title: "Affordable Pricing",
+      title: "Responsive",
       description:
-        "Premium quality at competitive prices. Get the best value for your investment.",
+        "perfect experiance on all devices - desktop, tablet, and mobile. fully responsive designs.",
     },
     {
       number: "06",

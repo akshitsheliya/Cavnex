@@ -129,3 +129,13 @@ html.lenis body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+.gradient-text {
+  background: linear-gradient(90deg, #d95db0 0%, #3344dc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.my-bg-gradient {
+  background: linear-gradient(90deg, #d95db0 0%, #3344dc 100%);
+}
