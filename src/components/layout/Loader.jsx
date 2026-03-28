@@ -258,7 +258,7 @@ export default function Loader({ onComplete }) {
           <div className="absolute bottom-8 left-8 sm:bottom-12 sm:left-12 hidden sm:block">
             <div className="flex items-center gap-3">
               <div className="w-8 h-[1px] bg-gray-700" />
-              <span className="text-[10px] text-gray-600 font-mono">2024</span>
+              <span className="text-[10px] text-gray-600 font-mono">2026</span>
             </div>
           </div>
 

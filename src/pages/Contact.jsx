@@ -5,13 +5,12 @@ import phoneIcon from "../assets/contact/phone.svg";
 import mapIcon from "../assets/contact/map.svg";
 import msgIcon from "../assets/contact/msg.svg";
 import abstract from "../assets/abstract.svg";
-import abstaractlight from "../assets/abstaractlight.svg";
-import abstaractextralight from "../assets/abstaractextralight.svg";
 import instagram from "../assets/contact/insta.svg";
 import github from "../assets/contact/git.svg";
 import linkedin from "../assets/contact/in.svg";
 import twitter from "../assets/contact/x.svg";
 import CustomDropdown from "../components/common/CustomDropdown";
+import { link } from "framer-motion/client";
 
 const faqs = [
   {
@@ -110,7 +109,7 @@ const Contact = () => {
         <img
           src={abstract}
           alt=""
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full "
         />
 
         <div
@@ -139,7 +138,8 @@ const Contact = () => {
                       />
                     ),
                     label: "Email",
-                    value: "hello@cavnex.com",
+                    value: "connect@cavnex.com",
+                    link: "mailto:connect@cavnex.com",
                   },
                   {
                     icon: (
@@ -150,7 +150,8 @@ const Contact = () => {
                       />
                     ),
                     label: "Phone",
-                    value: "+918799263376",
+                    value: "+919157500298",
+                    link: "tel:+919157500298",
                   },
                   {
                     icon: (
@@ -158,6 +159,7 @@ const Contact = () => {
                     ),
                     label: "WhatsApp",
                     value: "Chat with us",
+                    link: "https://wa.me/919157500298?text=Hello%20Cavnex!",
                   },
                   {
                     icon: (
@@ -166,27 +168,38 @@ const Contact = () => {
                     label: "Location",
                     value: "Mumbai, India",
                   },
-                ].map((item, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
-                    className="flex items-center gap-2 xs:gap-3 sm:gap-4 rounded-xl px-3 xs:px-4 py-2.5 xs:py-3 sm:py-4 backdrop-blur-[23px]"
-                  >
-                    <div className="w-7 h-7 xs:w-9 xs:h-9 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center flex-shrink-0">
-                      {item.icon}
-                    </div>
-                    <div className="min-w-0">
-                      <p className="text-gray-400 text-[9px] xs:text-[10px] sm:text-xs">
-                        {item.label}
-                      </p>
-                      <p className="text-white text-[10px] xs:text-xs sm:text-sm font-medium truncate">
-                        {item.value}
-                      </p>
-                    </div>
-                  </motion.div>
-                ))}
+                ].map((item, i) => {
+                  const Wrapper = item.link ? motion.a : motion.div;
+
+                  return (
+                    <Wrapper
+                      key={i}
+                      {...(item.link && {
+                        href: item.link,
+                        target: item.link.startsWith("http")
+                          ? "_blank"
+                          : "_self",
+                        rel: "noopener noreferrer",
+                      })}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
+                      className="flex items-center gap-2 xs:gap-3 sm:gap-4 rounded-xl px-3 xs:px-4 py-2.5 xs:py-3 sm:py-4 backdrop-blur-[23px] cursor-default"
+                    >
+                      <div className="w-7 h-7 xs:w-9 xs:h-9 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center flex-shrink-0">
+                        {item.icon}
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-gray-400 text-[9px] xs:text-[10px] sm:text-xs">
+                          {item.label}
+                        </p>
+                        <p className="text-white text-[10px] xs:text-xs sm:text-sm font-medium truncate cursor-pointer">
+                          {item.value}
+                        </p>
+                      </div>
+                    </Wrapper>
+                  );
+                })}
               </div>
 
               <motion.div
@@ -208,6 +221,7 @@ const Contact = () => {
                           className="w-full h-full"
                         />
                       ),
+                      link: "https://www.instagram.com/cavnex",
                     },
                     {
                       icon: (
@@ -217,6 +231,7 @@ const Contact = () => {
                           className="w-full h-full"
                         />
                       ),
+                      link: "https://www.linkedin.com/in/cavnex",
                     },
                     {
                       icon: (
@@ -226,20 +241,23 @@ const Contact = () => {
                           className="w-full h-full"
                         />
                       ),
+                      link: "https://github.com/Cavnex-info-Tech",
                     },
-                    {
-                      icon: (
-                        <img
-                          src={twitter}
-                          alt="Twitter"
-                          className="w-full h-full"
-                        />
-                      ),
-                    },
+                    // {
+                    //   icon: (
+                    //     <img
+                    //       src={twitter}
+                    //       alt="Twitter"
+                    //       className="w-full h-full"
+                    //     />
+                    //   ),
+                    // },
                   ].map((s, i) => (
                     <motion.a
                       key={i}
-                      href="#"
+                      href={s.link || "#"}
+                      target={s.link ? "_blank" : "_self"}
+                      rel="noopener noreferrer"
                       whileHover={{ scale: 1.15 }}
                       whileTap={{ scale: 0.95 }}
                       className="text-white rounded-full p-1.5 xs:p-2 w-7 h-7 xs:w-8 xs:h-8 bg-[#00000070] hover:text-white transition-colors"
