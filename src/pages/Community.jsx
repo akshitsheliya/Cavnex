@@ -9,7 +9,7 @@ import arrow from "../assets/community/arrow.svg";
 import gredfull from "../assets/gredfull.svg";
 import left from "../assets/left.svg";
 import right from "../assets/right.svg";
-import ak from "../assets/ak.jpeg";
+import ak from "../assets/ak.png";
 
 const containerVariants = {
   hidden: { opacity: 0 },
