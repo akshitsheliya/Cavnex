@@ -8,8 +8,7 @@ import {
   AdditionalServices,
   MaintenancePlans,
   containerVariants,
-  cardVariants,
-} from "./ServiceComponents";
+} from "./Servicecomponents";
 import { Link } from "react-router-dom";
 import { HiArrowLeft } from "react-icons/hi";
 

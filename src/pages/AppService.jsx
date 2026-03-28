@@ -10,7 +10,6 @@ import {
   AdditionalServices,
   MaintenancePlans,
   containerVariants,
-  cardVariants,
 } from "./Servicecomponents";
 
 const appData = {

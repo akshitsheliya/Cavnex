@@ -8,7 +8,6 @@ import {
   AdditionalServices,
   MaintenancePlans,
   containerVariants,
-  cardVariants,
 } from "./Servicecomponents";
 import { Link } from "react-router-dom";
 import { HiArrowLeft } from "react-icons/hi";
@@ -94,7 +93,7 @@ const websiteData = {
     },
   },
 };
-
+// name
 const WebsiteService = () => {
   const navigate = useNavigate();
 
