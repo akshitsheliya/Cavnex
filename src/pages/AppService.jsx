@@ -1,42 +1,105 @@
+import React from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { fadeInUp } from "../utils/animations";
-import SectionTitle from "../components/common/SectionTitle";
-import PricingCard from "../components/common/PricingCard";
-import Button from "../components/common/Button";
-import { HiCheck, HiArrowLeft } from "react-icons/hi";
-import { services } from "../data/services";
+import { HiArrowLeft } from "react-icons/hi";
+import {
+  SectionHeader,
+  GradientBox,
+  PricingCard,
+  AdditionalServices,
+  MaintenancePlans,
+  containerVariants,
+  cardVariants,
+} from "./Servicecomponents";
 
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.1,
+const appData = {
+  title: "App Development",
+  description:
+    "Native and cross-platform mobile applications for iOS and Android",
+  whatsIncluded: [
+    "Cross-Platform Development",
+    "Native Performance",
+    "Cloud Backend Integration",
+    "Push Notifications",
+    "Offline Functionality",
+    "In-App Purchases",
+    "User Authentication",
+    "Real-time Updates",
+    "App Store Deployment",
+    "Analytics Integration",
+  ],
+  plans: [
+    {
+      name: "Basic App",
+      price: "₹15,000",
+      features: [
+        "Single Platform",
+        "5 Screens",
+        "Basic Features",
+        "Cloud Backend",
+        "1 Month Support",
+      ],
+    },
+    {
+      name: "Professional App",
+      price: "₹30,000",
+      popular: true,
+      features: [
+        "Cross Platform",
+        "15 Screens",
+        "Advanced Features",
+        "Push Notifications",
+        "User Authentication",
+        "Analytics",
+        "3 Months Support",
+      ],
+    },
+    {
+      name: "Enterprise Website",
+      price: "₹25,000",
+      features: [
+        "Cross Platform",
+        "Unlimited Screens",
+        "Premium Features",
+        "Complete Backend",
+        "Admin Dashboard",
+        "Payment Gateway",
+        "6 Months Support",
+      ],
+    },
+  ],
+  additionalServices: [
+    { name: "Backend API Development", price: "₹8,000" },
+    { name: "Admin Panel", price: "₹6,000" },
+    { name: "Payment Integration", price: "₹5,000" },
+    { name: "Social Login", price: "₹3,000" },
+    { name: "Payment Integration", price: "₹7,000" },
+    { name: "Maps Integration", price: "₹4,000" },
+  ],
+  maintenance: {
+    basic: {
+      price: "₹3,000",
+      features: ["Updates", "Bug Fixes", "Server Maintenance"],
+    },
+    premium: {
+      price: "₹7,000",
+      features: [
+        "Everything in Basic",
+        "Feature Updates",
+        "Performance Optimization",
+        "Priority Support",
+      ],
     },
   },
 };
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.4,
-      ease: "easeOut",
-    },
-  },
-};
-
-export default function AppService() {
+const AppDevelopment = () => {
   const navigate = useNavigate();
-  const service = services.find((s) => s.id === "app");
-  const ServiceIcon = service.icon;
 
   return (
-    <div className="pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20">
-      <div className="max-w-7xl mx-auto container-padding">
+    <div className="min-h-screen bg-black text-white py-12 sm:py-16 md:py-20 px-3 sm:px-4 md:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -45,177 +108,61 @@ export default function AppService() {
         >
           <Link
             to="/services"
-            className="inline-flex items-center gap-2 text-gray-400 hover:text-primary-400 transition-colors text-sm sm:text-base group"
+            className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors text-sm sm:text-base group"
           >
             <HiArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
             Back to Services
           </Link>
         </motion.div>
-
-        <motion.div
-          {...fadeInUp}
-          className="text-center mb-10 sm:mb-12 md:mb-16"
-        >
-          <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-gradient-to-br from-primary-500/20 to-purple-500/20 rounded-2xl flex items-center justify-center mb-4 sm:mb-6 mx-auto">
-            <ServiceIcon className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-primary-400" />
-          </div>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold gradient-text mb-4 sm:mb-6">
-            {service.title}
-          </h1>
-          <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
-            {service.description}
-          </p>
-        </motion.div>
-
-        <motion.div
-          variants={cardVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="card-gradient rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-8 mb-10 sm:mb-12 md:mb-16"
-        >
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-4 sm:mb-6">
-            What's Included
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 md:gap-4">
-            {service.features.map((feature, index) => (
-              <div
-                key={index}
-                className="flex items-center text-gray-300 text-sm sm:text-base"
-              >
-                <HiCheck className="w-4 h-4 sm:w-5 sm:h-5 text-primary-400 mr-2 sm:mr-3 flex-shrink-0" />
-                {feature}
-              </div>
-            ))}
-          </div>
-        </motion.div>
-
-        <SectionTitle
-          title="Pricing Plans"
-          subtitle="Choose the perfect plan for your mobile app"
+        <SectionHeader
+          title={appData.title}
+          description={appData.description}
         />
+
+        <GradientBox features={appData.whatsIncluded} />
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-8 sm:mb-12"
+        >
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-none tracking-tight">
+            Pricing
+            <br />
+            Plans
+          </h2>
+        </motion.div>
 
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-10 sm:mb-12 md:mb-16"
+          viewport={{ once: true, margin: "-50px" }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16"
         >
-          {service.pricing.map((plan, index) => (
-            <PricingCard key={index} {...plan} link="/contact" />
+          {appData.plans.map((plan, index) => (
+            <PricingCard
+              key={index}
+              plan={plan}
+              popular={plan.popular}
+              onGetStarted={() => navigate("/contact")}
+            />
           ))}
         </motion.div>
 
-        <motion.div
-          variants={cardVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="card-gradient rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-8 mb-10 sm:mb-12 md:mb-16"
-        >
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-4 sm:mb-6">
-            Additional Services
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 md:gap-4">
-            {service.addons.map((addon, index) => (
-              <div
-                key={index}
-                className="flex justify-between items-center p-3 sm:p-4 bg-dark-800 rounded-lg hover:bg-dark-700 transition-colors"
-              >
-                <span className="text-gray-300 text-sm sm:text-base">
-                  {addon.name}
-                </span>
-                <span className="text-primary-400 font-semibold text-sm sm:text-base">
-                  +₹{addon.price.toLocaleString()}
-                </span>
-              </div>
-            ))}
-          </div>
-        </motion.div>
+        <AdditionalServices services={appData.additionalServices} />
 
-        <motion.div
-          variants={cardVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="card-gradient rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-8 mb-10 sm:mb-12 md:mb-16"
-        >
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-4 sm:mb-6">
-            Maintenance Packages
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
-            <div className="p-4 sm:p-5 md:p-6 bg-dark-800 rounded-lg sm:rounded-xl">
-              <h3 className="text-lg sm:text-xl font-bold text-white mb-2">
-                Basic Maintenance
-              </h3>
-              <div className="text-2xl sm:text-3xl font-bold gradient-text mb-3 sm:mb-4">
-                ₹{service.maintenance.basic.price}/
-                {service.maintenance.basic.period}
-              </div>
-              <ul className="space-y-1.5 sm:space-y-2">
-                {service.maintenance.basic.features.map((feature, index) => (
-                  <li
-                    key={index}
-                    className="flex items-center text-gray-300 text-sm sm:text-base"
-                  >
-                    <HiCheck className="w-4 h-4 text-primary-400 mr-2 flex-shrink-0" />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="p-4 sm:p-5 md:p-6 bg-gradient-to-br from-primary-900/20 to-purple-900/20 rounded-lg sm:rounded-xl border border-primary-500/30">
-              <div className="flex items-center justify-between mb-2">
-                <h3 className="text-lg sm:text-xl font-bold text-white">
-                  Premium Maintenance
-                </h3>
-                <span className="px-2 py-1 bg-primary-500/20 text-primary-400 text-xs font-semibold rounded-full">
-                  Recommended
-                </span>
-              </div>
-              <div className="text-2xl sm:text-3xl font-bold gradient-text mb-3 sm:mb-4">
-                ₹{service.maintenance.premium.price}/
-                {service.maintenance.premium.period}
-              </div>
-              <ul className="space-y-1.5 sm:space-y-2">
-                {service.maintenance.premium.features.map((feature, index) => (
-                  <li
-                    key={index}
-                    className="flex items-center text-gray-300 text-sm sm:text-base"
-                  >
-                    <HiCheck className="w-4 h-4 text-primary-400 mr-2 flex-shrink-0" />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
-          className="text-center card-gradient rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-12"
-        >
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-3 sm:mb-4">
-            Ready to Build Your App?
-          </h2>
-          <p className="text-gray-400 text-sm sm:text-base mb-6 sm:mb-8 max-w-2xl mx-auto">
-            Let's bring your mobile app idea to life with cutting-edge
-            technology
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-            <Button to="/contact">Start Your Project</Button>
-            <Button to="/services" variant="secondary">
-              View Other Services
-            </Button>
-          </div>
-        </motion.div>
+        <div className="mt-6 sm:mt-8">
+          <MaintenancePlans
+            basic={appData.maintenance.basic}
+            premium={appData.maintenance.premium}
+          />
+        </div>
       </div>
     </div>
   );
-}
+};
+
+export default AppDevelopment;

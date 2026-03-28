@@ -1,165 +1,550 @@
+import React from "react";
 import { motion } from "framer-motion";
-import { fadeInUp, staggerContainer } from "../utils/animations";
-import SectionTitle from "../components/common/SectionTitle";
-import Button from "../components/common/Button";
-import {
-  HiColorSwatch,
-  HiCode,
-  HiServer,
-  HiDeviceMobile,
-  HiArrowRight,
-} from "react-icons/hi";
-import { FaReact, FaNodeJs, FaPython, FaAws } from "react-icons/fa";
-import {
-  SiFlutter,
-  SiNextdotjs,
-  SiMongodb,
-  SiPostgresql,
-} from "react-icons/si";
+import { useNavigate } from "react-router-dom";
+import ui from "../assets/community/ui.png";
+import backend from "../assets/community/be.png";
+import mobile from "../assets/community/mobile.png";
+import frontend from "../assets/community/fe.png";
+import arrow from "../assets/community/arrow.svg";
+import gredfull from "../assets/gredfull.svg";
+import left from "../assets/left.svg";
+import right from "../assets/right.svg";
+import ak from "../assets/ak.jpeg";
 
-export default function Community() {
-  const team = [
-    {
-      role: "UI/UX Designers",
-      icon: HiColorSwatch,
-      count: "5+",
-      members: [
-        "Creative Design",
-        "User Research",
-        "Prototyping",
-        "Visual Design",
-      ],
-      description:
-        "Our design team crafts beautiful and intuitive user experiences",
-    },
-    {
-      role: "Frontend Developers",
-      icon: HiCode,
-      count: "8+",
-      members: [
-        "React Specialists",
-        "Vue Experts",
-        "Angular Developers",
-        "UI Engineers",
-      ],
-      description: "Building responsive and interactive user interfaces",
-    },
-    {
-      role: "Backend Developers",
-      icon: HiServer,
-      count: "6+",
-      members: [
-        "Node.js Experts",
-        "Python Developers",
-        "Database Architects",
-        "API Specialists",
-      ],
-      description: "Creating robust and scalable server-side solutions",
-    },
-    {
-      role: "Mobile Developers",
-      icon: HiDeviceMobile,
-      count: "4+",
-      members: ["React Native", "Flutter", "iOS Native", "Android Native"],
-      description: "Developing native and cross-platform mobile applications",
-    },
-  ];
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15, delayChildren: 0.1 },
+  },
+};
 
-  const technologies = [
-    { name: "React", icon: FaReact },
-    { name: "Node.js", icon: FaNodeJs },
-    { name: "Python", icon: FaPython },
-    { name: "Flutter", icon: SiFlutter },
-    { name: "Next.js", icon: SiNextdotjs },
-    { name: "MongoDB", icon: SiMongodb },
-    { name: "PostgreSQL", icon: SiPostgresql },
-    { name: "AWS", icon: FaAws },
-  ];
+const cardVariants = {
+  hidden: { opacity: 0, y: 40, scale: 0.97 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] },
+  },
+};
+
+const teams = [
+  {
+    count: "5+",
+    title: "UI/UX Designers",
+    description:
+      "Our design team crafts beautiful and intuitive user experiences",
+    skills: [
+      "Creative Design",
+      "User Research",
+      "Prototyping",
+      "Visual Design",
+    ],
+    icon: <img src={ui} alt="UI/UX Designers" className="w-full h-full" />,
+  },
+  {
+    count: "8+",
+    title: "Frontend Developers",
+    description: "Building responsive and interactive user interfaces",
+    skills: [
+      "React Specialists",
+      "Vue Experts",
+      "Angular Developers",
+      "UI Engineers",
+    ],
+    icon: (
+      <img src={frontend} alt="Frontend Developers" className="w-full h-full" />
+    ),
+  },
+  {
+    count: "6+",
+    title: "Backend Developers",
+    description: "Creating robust and scalable server-side solutions",
+    skills: [
+      "Node.js Experts",
+      "Python Developers",
+      "Database Architects",
+      "API Specialists",
+    ],
+    icon: (
+      <img src={backend} alt="Backend Developers" className="w-full h-full" />
+    ),
+  },
+  {
+    count: "4+",
+    title: "Mobile Developers",
+    description: "Developing native and cross-platform mobile applications",
+    skills: ["React Native", "Flutter", "iOS Native", "Android Native"],
+    icon: (
+      <img src={mobile} alt="Mobile Developers" className="w-full h-full" />
+    ),
+  },
+];
+
+const technologies = [
+  {
+    name: "React",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" className="w-7 h-7 sm:w-10 sm:h-10">
+        <circle cx="12" cy="12" r="2.5" fill="#61DAFB" />
+        <ellipse
+          cx="12"
+          cy="12"
+          rx="10"
+          ry="4"
+          stroke="#61DAFB"
+          strokeWidth="1.2"
+          fill="none"
+        />
+        <ellipse
+          cx="12"
+          cy="12"
+          rx="10"
+          ry="4"
+          stroke="#61DAFB"
+          strokeWidth="1.2"
+          fill="none"
+          transform="rotate(60 12 12)"
+        />
+        <ellipse
+          cx="12"
+          cy="12"
+          rx="10"
+          ry="4"
+          stroke="#61DAFB"
+          strokeWidth="1.2"
+          fill="none"
+          transform="rotate(120 12 12)"
+        />
+      </svg>
+    ),
+  },
+  {
+    name: "Node.js",
+    icon: (
+      <svg viewBox="0 0 24 24" className="w-7 h-7 sm:w-10 sm:h-10">
+        <path d="M12 2L2 7v10l10 5 10-5V7L12 2z" fill="#3C873A" />
+        <text x="6" y="15" fontSize="6" fill="white" fontWeight="bold">
+          JS
+        </text>
+      </svg>
+    ),
+  },
+  {
+    name: "Python",
+    icon: (
+      <svg viewBox="0 0 24 24" className="w-7 h-7 sm:w-10 sm:h-10">
+        <path
+          d="M12 2C8 2 7 4 7 6v2h5v1H5C3 9 2 10 2 12s1 3 3 4l1-2c-1 0-2-.5-2-2s1-2 2-2h7V8c0-2 1-4 4-4s4 2 4 4v4c0 2-2 3-4 3h-1v2h1c3 0 5-2 5-5V8c0-4-3-6-10-6z"
+          fill="#3572A5"
+        />
+        <path
+          d="M12 22c4 0 5-2 5-4v-2h-5v-1h7c2 0 3-1 3-3s-1-3-3-4l-1 2c1 0 2 .5 2 2s-1 2-2 2h-7v2c0 2-1 4-4 4s-4-2-4-4v-4c0-2 2-3 4-3h1v-2h-1c-3 0-5 2-5 5v4c0 4 3 6 10 6z"
+          fill="#FFD43B"
+        />
+      </svg>
+    ),
+  },
+  {
+    name: "Flutter",
+    icon: (
+      <svg viewBox="0 0 24 24" className="w-7 h-7 sm:w-10 sm:h-10">
+        <path d="M14 2L4 12l3 3 10-10-3-3z" fill="#54C5F8" />
+        <path d="M4 12l10 10 3-3-7-7-3 3-3-3z" fill="#01579B" />
+        <path d="M14 19l-3-3 3-3 3 3-3 3z" fill="#29B6F6" />
+      </svg>
+    ),
+  },
+  {
+    name: "Next.js",
+    icon: (
+      <svg viewBox="0 0 24 24" className="w-7 h-7 sm:w-10 sm:h-10">
+        <circle cx="12" cy="12" r="10" fill="white" />
+        <path
+          d="M8 8v8l8-8v8"
+          stroke="black"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          fill="none"
+        />
+      </svg>
+    ),
+  },
+  {
+    name: "MongoDB",
+    icon: (
+      <svg viewBox="0 0 24 24" className="w-7 h-7 sm:w-10 sm:h-10">
+        <path
+          d="M12 2c-1 4-4 6-4 10a4 4 0 008 0c0-4-3-6-4-10z"
+          fill="#4DB33D"
+        />
+        <path
+          d="M12 18v4"
+          stroke="#4DB33D"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        />
+      </svg>
+    ),
+  },
+  {
+    name: "PostgreSQL",
+    icon: (
+      <svg viewBox="0 0 24 24" className="w-7 h-7 sm:w-10 sm:h-10">
+        <ellipse
+          cx="12"
+          cy="8"
+          rx="7"
+          ry="4"
+          stroke="#336791"
+          strokeWidth="1.5"
+          fill="none"
+        />
+        <path
+          d="M5 8v8c0 2.2 3.1 4 7 4s7-1.8 7-4V8"
+          stroke="#336791"
+          strokeWidth="1.5"
+          fill="none"
+        />
+        <path
+          d="M5 12c0 2.2 3.1 4 7 4s7-1.8 7-4"
+          stroke="#336791"
+          strokeWidth="1.2"
+          fill="none"
+        />
+      </svg>
+    ),
+  },
+  {
+    name: "AWS",
+    icon: (
+      <svg viewBox="0 0 24 24" className="w-7 h-7 sm:w-10 sm:h-10">
+        <path
+          d="M6 14c-2 0-3-1-3-2s1-2 2-2c0-2 1.5-3.5 3.5-3.5.5 0 1 .1 1.4.3C10.4 5.4 11.6 4.5 13 4.5c2.2 0 4 1.8 4 4 0 .2 0 .4-.1.6C18 9.4 19 10.5 19 12c0 1.7-1.3 3-3 3"
+          stroke="#FF9900"
+          strokeWidth="1.4"
+          fill="none"
+          strokeLinecap="round"
+        />
+        <path
+          d="M9 17l-2 2 2 2M15 17l2 2-2 2"
+          stroke="#FF9900"
+          strokeWidth="1.3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          fill="none"
+        />
+      </svg>
+    ),
+  },
+];
+
+const teamMembers = [
+  {
+    name: "Akshit Sheliya",
+    role: "CTO (Chief Technology Officer)",
+    position: "top-right",
+  },
+  {
+    name: "Harshil Lakhani",
+    role: "CEO (Chief Executive Officer)",
+    position: "top-right-2",
+  },
+  {
+    name: "Megh Patel",
+    role: "CPO( Chief Product Officer)",
+    position: "bottom-left",
+  },
+];
+
+const Community = () => {
+  const navigate = useNavigate();
 
   return (
-    <div className="pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20">
-      <div className="max-w-7xl mx-auto container-padding">
-        <SectionTitle
-          title="Our Developer Community"
-          subtitle="Meet the talented team behind your success"
-          gradient
-        />
-
-        <motion.div
-          {...staggerContainer}
-          className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 mb-12 sm:mb-16 md:mb-20"
-        >
-          {team.map((member, index) => (
-            <motion.div
-              key={index}
-              {...fadeInUp}
-              className="card-gradient rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-8 hover:shadow-2xl transition-all duration-300"
+    <>
+      <div className="min-h-screen bg-black text-white py-12 sm:py-16 md:py-20 px-3 sm:px-4 md:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="mb-8 sm:mb-10"
+          >
+            <div className="flex flex-col sm:flex-row sm:items-start sm:gap-8 mb-4">
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="flex-shrink-0"
+              >
+                <h1 className="text-2xl sm:text-3xl md:text-4xl font-light whitespace-nowrap mb-4 sm:mb-6">
+                  Our Developer Community
+                </h1>
+              </motion.div>
+              <motion.div
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="hidden sm:block flex-1 mt-2 origin-left"
+              >
+                <div className="h-px bg-gray-700 w-full mt-3" />
+              </motion.div>
+            </div>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="text-gray-400 text-base sm:text-lg"
             >
-              <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-primary-500/20 to-purple-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <member.icon className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-primary-400" />
-                </div>
-                <div>
-                  <div className="text-2xl sm:text-3xl font-bold gradient-text mb-0.5 sm:mb-1">
-                    {member.count}
-                  </div>
-                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white">
-                    {member.role}
-                  </h3>
-                </div>
-              </div>
-              <p className="text-gray-400 text-sm sm:text-base mb-4 sm:mb-6">
-                {member.description}
-              </p>
-              <div className="space-y-1.5 sm:space-y-2">
-                {member.members.map((skill, idx) => (
-                  <div
-                    key={idx}
-                    className="flex items-center text-gray-300 text-sm sm:text-base"
-                  >
-                    <HiArrowRight className="w-4 h-4 text-primary-400 mr-2 flex-shrink-0" />
-                    {skill}
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+              Meet the talented team behind your success
+            </motion.p>
+          </motion.div>
 
-        <motion.div {...fadeInUp} className="mb-12 sm:mb-16 md:mb-20">
-          <h2 className="text-2xl sm:text-3xl font-bold text-white text-center mb-8 sm:mb-12">
-            Technologies We Work With
-          </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 sm:gap-4 md:gap-6">
-            {technologies.map((tech, index) => (
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 md:gap-6 mb-16 sm:mb-20 md:mb-24"
+          >
+            {teams.map((team, index) => (
               <motion.div
                 key={index}
-                whileHover={{ y: -10, scale: 1.05 }}
-                className="card-gradient rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6 text-center hover:shadow-xl transition-all duration-300"
+                variants={cardVariants}
+                whileHover={{ scale: 1.01 }}
+                transition={{ duration: 0.3 }}
+                className="relative rounded-2xl p-5 sm:p-6 md:p-7"
+                style={{
+                  border: "1.5px solid rgba(255,255,255,0.10)",
+                }}
               >
-                <tech.icon className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 mx-auto mb-2 sm:mb-3 text-primary-400" />
-                <div className="text-xs sm:text-sm text-gray-300">
-                  {tech.name}
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl my-bg-gradient flex items-center justify-center flex-shrink-0">
+                    {team.icon}
+                  </div>
+                  <div>
+                    <p className="text-xl sm:text-2xl font-bold">
+                      {team.count}
+                    </p>
+                    <p className="text-sm sm:text-base md:text-lg font-semibold">
+                      {team.title}
+                    </p>
+                  </div>
+                </div>
+                <p className="text-gray-100 text-xs sm:text-sm mb-4">
+                  {team.description}
+                </p>
+                <div className="space-y-1.5 sm:space-y-2">
+                  {team.skills.map((skill, i) => (
+                    <div key={i} className="flex items-center gap-2">
+                      <span className="text-gray-400 text-xs ">
+                        <img src={arrow} alt="Arrow" />
+                      </span>
+                      <span className="text-gray-300 text-xs sm:text-sm">
+                        {skill}
+                      </span>
+                    </div>
+                  ))}
                 </div>
               </motion.div>
             ))}
-          </div>
-        </motion.div>
+          </motion.div>
 
-        <motion.div
-          {...fadeInUp}
-          className="text-center card-gradient rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-12"
-        >
-          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3 sm:mb-4">
-            Join Our Community
-          </h2>
-          <p className="text-gray-400 text-sm sm:text-base mb-6 sm:mb-8 max-w-2xl mx-auto">
-            We're always looking for talented developers and designers to join
-            our team
-          </p>
-          <Button to="/contact">Get In Touch</Button>
-        </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="mb-12 sm:mb-16"
+          >
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-none tracking-tight">
+              Technologies
+              <br />
+              We Work With
+            </h2>
+          </motion.div>
+
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="flex flex-wrap gap-8 mb-16 sm:mb-20 justify-center"
+          >
+            {technologies.map((tech, index) => (
+              <motion.div
+                key={index}
+                variants={cardVariants}
+                whileHover={{ scale: 1.08, y: -3 }}
+                transition={{ duration: 0.25 }}
+                className="flex flex-col items-center gap-4 justify-center gap-2 w-[72px] h-[80px] sm:w-28 sm:h-28 rounded-xl cursor-pointer"
+                style={{
+                  border: "1.5px solid rgba(255,255,255,0.12)",
+                }}
+              >
+                {tech.icon}
+                <span className="text-[10px] sm:text-xs text-gray-300">
+                  {tech.name}
+                </span>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="relative rounded-2xl sm:rounded-3xl p-8 sm:p-10 md:p-12 text-center mb-20 sm:mb-24 overflow-hidden"
+            style={{
+              background:
+                "linear-gradient(135deg, #1a0a4a 0%, #2d1b6e 40%, #6d28d9 100%)",
+            }}
+          >
+            <div
+              className="absolute inset-0 pointer-events-none bg-cover bg-center"
+              style={{
+                backgroundImage: `url(${gredfull})`,
+              }}
+            />
+            <div className="relative z-10">
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold text-white mb-2 sm:mb-3">
+                Join Our Community
+              </h3>
+              <p className="text-gray-300 text-xs sm:text-sm mb-6 sm:mb-8">
+                We're always looking for talented developers and designers to
+                join our team
+              </p>
+              <motion.button
+                whileHover={{ scale: 1.04, backgroundColor: "#f0f0f0" }}
+                whileTap={{ scale: 0.97 }}
+                onClick={() => navigate("/contact")}
+                className="bg-white text-black px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-semibold text-sm sm:text-base transition-all"
+              >
+                Get In Touch
+              </motion.button>
+            </div>
+          </motion.div>
+        </div>
       </div>
-    </div>
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7 }}
+        className="relative h-[550px] sm:h-[1150px] w-full overflow-hidden"
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="absolute top-16 left-16 z-50"
+        >
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-none tracking-tight text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.4)]">
+            Meet the
+            <br />
+            Team
+          </h2>
+        </motion.div>
+        {/* LEFT HAND IMAGE */}
+        <img
+          src={left}
+          alt="left hand"
+          className="absolute left-0 top-0  w-[45%] opacity-70"
+        />
+
+        {/* RIGHT HAND IMAGE */}
+        <img
+          src={right}
+          alt="right hand"
+          className="absolute right-0 bottom-40  w-[45%] opacity-70"
+        />
+
+        {/* DARK OVERLAY (better visibility) */}
+        <div className="absolute inset-0 bg-black/40" />
+
+        {/* Cards */}
+        <div className="relative w-full h-full">
+          {/* TOP RIGHT - CARD 1 */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="absolute top-16 right-96"
+          >
+            <div className="w-[300px] rounded-2xl overflow-hidden bg-black/50 backdrop-blur-md border border-white/10">
+              <img
+                src={ak}
+                className="w-full h-[400px] object-cover object-top"
+              />
+
+              <div className="p-4">
+                <p className="text-white font-semibold text-sm">
+                  Akshit Sheliya
+                </p>
+                <p className="text-gray-400 text-xs">
+                  CTO (Chief Technology Officer)
+                </p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* TOP RIGHT - CARD 2 (NO OVERLAP FIXED) */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="absolute top-16 right-10"
+          >
+            <div className="w-[300px] rounded-2xl overflow-hidden bg-black/50 backdrop-blur-md border border-white/10">
+              <img
+                // src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=600&q=80"
+                className="w-full h-[400px] object-cover object-top"
+              />
+
+              <div className="p-4">
+                <p className="text-white font-semibold text-sm">
+                  Harshil Lakhani
+                </p>
+                <p className="text-gray-400 text-xs">
+                  CEO (Chief Executive Officer)
+                </p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* BOTTOM LEFT CARD */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="absolute bottom-20 left-16"
+          >
+            <div className="w-[300px] rounded-2xl overflow-hidden bg-black/50 backdrop-blur-md border border-white/10">
+              <img
+                // src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=600&q=80"
+                className="w-full h-[400px] object-cover object-top"
+              />
+
+              <div className="p-4">
+                <p className="text-white font-semibold text-sm">Megh Patel</p>
+                <p className="text-gray-400 text-xs">
+                  CPO (Chief Product Officer)
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </motion.div>
+    </>
   );
-}
+};
+
+export default Community;

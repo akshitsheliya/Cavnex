@@ -6,7 +6,7 @@ import cavnex_full from "../../assets/cavnex_logo/cavnex_full.svg";
 const navLinks = [
   { name: "Home", path: "/" },
   { name: "services", path: "/services" },
-  { name: "Project", path: "/project" },
+  { name: "projects", path: "/projects" },
   { name: "Community", path: "/community" },
 ];
 

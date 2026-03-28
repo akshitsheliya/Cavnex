@@ -1,203 +1,480 @@
-import { motion } from "framer-motion";
-import { fadeInUp, fadeInLeft, fadeInRight } from "../utils/animations";
-import SectionTitle from "../components/common/SectionTitle";
-import ContactForm from "../components/contact/ContactForm";
-import { FaInstagram, FaLinkedinIn, FaTwitter, FaGithub } from "react-icons/fa";
-import {
-  HiMail,
-  HiPhone,
-  HiChat,
-  HiLocationMarker,
-  HiChevronDown,
-} from "react-icons/hi";
-import { useState } from "react";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import emailIcon from "../assets/contact/mail.svg";
+import phoneIcon from "../assets/contact/phone.svg";
+import mapIcon from "../assets/contact/map.svg";
+import msgIcon from "../assets/contact/msg.svg";
+import abstract from "../assets/abstract.svg";
+import instagram from "../assets/contact/insta.svg";
+import github from "../assets/contact/git.svg";
+import linkedin from "../assets/contact/in.svg";
+import twitter from "../assets/contact/x.svg";
+import CustomDropdown from "../components/common/CustomDropdown";
 
-export default function Contact() {
+const faqs = [
+  {
+    question: "How long does it take to build a website?",
+    answer:
+      "Typically 2-4 weeks depending on complexity and requirements. We ensure timely delivery without compromising quality.",
+  },
+  {
+    question: "What technologies do you use?",
+    answer:
+      "We use React, Next.js, Node.js, Flutter, MongoDB, PostgreSQL, AWS and more depending on your project needs.",
+  },
+  {
+    question: "Do you provide hosting services?",
+    answer:
+      "Yes, we offer SaaS hosting, self-hosted, and cloud solutions tailored to your business requirements.",
+  },
+  {
+    question: "Can I update the website myself?",
+    answer:
+      "Absolutely! We integrate a CMS so you can manage content easily without any technical knowledge.",
+  },
+  {
+    question: "Do you offer support after launch?",
+    answer:
+      "Yes, we provide maintenance packages ranging from 1 to 12 months post-launch support.",
+  },
+  {
+    question: "What is your refund policy?",
+    answer:
+      "We offer a transparent refund policy. Please contact us for detailed terms based on your project stage.",
+  },
+];
+
+const Contact = () => {
   const [openFaq, setOpenFaq] = useState(null);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    projectType: "",
+    budget: "",
+    details: "",
+  });
 
-  const contactInfo = [
-    {
-      icon: HiMail,
-      title: "Email",
-      value: "hello@cavnex.com",
-      link: "mailto:hello@cavnex.com",
-    },
-    {
-      icon: HiPhone,
-      title: "Phone",
-      value: "+91 87992 63376",
-      link: "tel:+919876543210",
-    },
-    {
-      icon: HiChat,
-      title: "WhatsApp",
-      value: "Chat with us",
-      link: "https://wa.me/919876543210",
-    },
-    {
-      icon: HiLocationMarker,
-      title: "Location",
-      value: "Mumbai, India",
-      link: "#",
-    },
-  ];
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-  const socialLinks = [
-    {
-      name: "Instagram",
-      icon: FaInstagram,
-      url: "#",
-      color: "from-pink-500 to-purple-600",
-    },
-    {
-      name: "LinkedIn",
-      icon: FaLinkedinIn,
-      url: "#",
-      color: "from-blue-600 to-blue-800",
-    },
-    {
-      name: "Twitter",
-      icon: FaTwitter,
-      url: "#",
-      color: "from-blue-400 to-blue-600",
-    },
-    {
-      name: "GitHub",
-      icon: FaGithub,
-      url: "#",
-      color: "from-gray-600 to-gray-800",
-    },
-  ];
+  const handleSubmit = () => {
+    console.log("Form submitted:", formData);
+  };
 
-  const faqs = [
-    {
-      question: "How long does it take to build a website?",
-      answer: "Typically 2-4 weeks depending on complexity and requirements.",
-    },
-    {
-      question: "What technologies do you use?",
-      answer:
-        "We use modern technologies like React, Node.js, Next.js, and Flutter.",
-    },
-    {
-      question: "Do you provide hosting services?",
-      answer:
-        "Yes, we provide hosting setup and can recommend the best hosting solutions.",
-    },
-    {
-      question: "Can I update the website myself?",
-      answer: "Absolutely! We provide easy-to-use admin panels and training.",
-    },
-    {
-      question: "Do you offer support after launch?",
-      answer: "Yes, we offer various maintenance and support packages.",
-    },
-    {
-      question: "What is your refund policy?",
-      answer: "We offer milestone-based payments and satisfaction guarantee.",
-    },
-  ];
+  const leftFaqs = faqs.filter((_, i) => i % 2 === 0);
+  const rightFaqs = faqs.filter((_, i) => i % 2 !== 0);
 
   return (
-    <div className="pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20">
-      <div className="max-w-7xl mx-auto container-padding">
-        <SectionTitle
-          title="Get In Touch"
-          subtitle="Have a project in mind? Let's discuss how we can help you"
-          gradient
+    <div className="min-h-screen bg-black text-white">
+      <div className="max-w-6xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 pt-12 sm:pt-16 md:pt-20">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          className="mb-8 sm:mb-10"
+        >
+          <div className="flex flex-col sm:flex-row sm:items-start sm:gap-8 mb-4">
+            <motion.h1
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-2xl sm:text-3xl md:text-4xl font-light whitespace-nowrap mb-4 sm:mb-6 flex-shrink-0"
+            >
+              Get In Touch
+            </motion.h1>
+            <motion.div
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="hidden sm:block flex-1 origin-left mt-2"
+            >
+              <div className="h-px bg-gray-700 w-full mt-3" />
+            </motion.div>
+          </div>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="text-gray-400 text-base sm:text-lg"
+          >
+            Have a project in mind? Let's discuss how we can help you
+          </motion.p>
+        </motion.div>
+      </div>
+
+      <div
+        className="relative w-full overflow-hidden"
+        style={{ minHeight: "420px" }}
+      >
+        <img
+          src={abstract}
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover"
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 mb-12 sm:mb-16 md:mb-20">
-          <motion.div {...fadeInLeft}>
-            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6 sm:mb-8">
-              Let's Start a Conversation
-            </h2>
+        <div
+          className="absolute"
+          style={{
+            top: "10%",
+            left: "25%",
+            right: "0",
+            bottom: "0",
+            background:
+              "repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(0,255,200,0.03) 2px, rgba(0,255,200,0.03) 4px)",
+          }}
+        />
 
-            <div className="space-y-3 sm:space-y-4 mb-8 sm:mb-12">
-              {contactInfo.map((info, index) => (
-                <motion.a
-                  key={index}
-                  href={info.link}
-                  {...fadeInUp}
-                  whileHover={{ x: 10 }}
-                  className="flex items-center gap-3 sm:gap-4 card-gradient rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6 hover:shadow-xl transition-all duration-300"
+        <div className="relative z-10 max-w-6xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-10 sm:py-14">
+          <div className="flex flex-col lg:flex-row gap-6 sm:gap-8">
+            <div className="flex flex-col gap-3 sm:gap-4 lg:w-[340px] xl:w-[380px] flex-shrink-0">
+              {[
+                {
+                  icon: (
+                    <img
+                      src={emailIcon}
+                      alt="email"
+                      className="w-full h-full"
+                    />
+                  ),
+                  label: "Email",
+                  value: "hello@cavnex.com",
+                },
+                {
+                  icon: (
+                    <img
+                      src={phoneIcon}
+                      alt="phone"
+                      className="w-full h-full"
+                    />
+                  ),
+                  label: "Phone",
+                  value: "+918799263376",
+                },
+                {
+                  icon: (
+                    <img src={msgIcon} alt="map" className="w-full h-full" />
+                  ),
+                  label: "WhatsApp",
+                  value: "Chat with us",
+                },
+                {
+                  icon: (
+                    <img src={mapIcon} alt="map" className="w-full h-full" />
+                  ),
+                  label: "Location",
+                  value: "Mumbai, India",
+                },
+              ].map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
+                  className="flex items-center gap-3 sm:gap-4 rounded-xl px-4 py-3 sm:py-4 backdrop-blur-[23px]"
                 >
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-primary-500/20 to-purple-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <info.icon className="w-5 h-5 sm:w-6 sm:h-6 text-primary-400" />
+                  <div className="w-9 h-9 sm:w-12 sm:h-12 rounded-lg  flex items-center justify-center flex-shrink-0">
+                    {item.icon}
                   </div>
                   <div>
-                    <div className="text-xs sm:text-sm text-gray-400 mb-0.5">
-                      {info.title}
-                    </div>
-                    <div className="text-white font-semibold text-sm sm:text-base">
-                      {info.value}
-                    </div>
-                  </div>
-                </motion.a>
-              ))}
-            </div>
-
-            <div>
-              <h3 className="text-lg sm:text-xl font-bold text-white mb-4 sm:mb-6">
-                Follow Us
-              </h3>
-              <div className="grid grid-cols-2 gap-3 sm:gap-4">
-                {socialLinks.map((social, index) => (
-                  <motion.a
-                    key={index}
-                    href={social.url}
-                    whileHover={{ scale: 1.05 }}
-                    className={`flex items-center gap-2 sm:gap-3 p-3 sm:p-4 bg-gradient-to-r ${social.color} rounded-lg sm:rounded-xl text-white font-semibold hover:shadow-lg transition-all text-sm sm:text-base`}
-                  >
-                    <social.icon className="w-5 h-5 sm:w-6 sm:h-6" />
-                    <span className="hidden xs:inline">{social.name}</span>
-                  </motion.a>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div {...fadeInRight}>
-            <ContactForm />
-          </motion.div>
-        </div>
-
-        <motion.div {...fadeInUp}>
-          <h2 className="text-2xl sm:text-3xl font-bold text-white text-center mb-8 sm:mb-12">
-            Frequently Asked Questions
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6 max-w-4xl mx-auto">
-            {faqs.map((faq, index) => (
-              <motion.div
-                key={index}
-                {...fadeInUp}
-                className="card-gradient rounded-lg sm:rounded-xl overflow-hidden"
-              >
-                <button
-                  onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                  className="w-full p-4 sm:p-5 md:p-6 text-left flex items-center justify-between gap-4"
-                >
-                  <h3 className="text-sm sm:text-base md:text-lg font-bold text-white pr-4">
-                    {faq.question}
-                  </h3>
-                  <HiChevronDown
-                    className={`w-5 h-5 text-primary-400 flex-shrink-0 transition-transform ${
-                      openFaq === index ? "rotate-180" : ""
-                    }`}
-                  />
-                </button>
-                {openFaq === index && (
-                  <div className="px-4 sm:px-5 md:px-6 pb-4 sm:pb-5 md:pb-6">
-                    <p className="text-gray-400 text-sm sm:text-base">
-                      {faq.answer}
+                    <p className="text-gray-400 text-[10px] sm:text-xs">
+                      {item.label}
+                    </p>
+                    <p className="text-white text-xs sm:text-sm font-medium">
+                      {item.value}
                     </p>
                   </div>
-                )}
+                </motion.div>
+              ))}
+
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.75 }}
+                className="mt-2 sm:mt-3"
+              >
+                <p className="text-white font-semibold text-base sm:text-4xl mb-3">
+                  Follow Us
+                </p>
+                <div className="flex items-center  gap-4">
+                  {[
+                    {
+                      icon: (
+                        <img
+                          src={instagram}
+                          alt="Instagram"
+                          className="w-full h-full"
+                        />
+                      ),
+                    },
+                    {
+                      icon: (
+                        <img
+                          src={linkedin}
+                          alt="LinkedIn"
+                          className="w-full h-full"
+                        />
+                      ),
+                    },
+                    {
+                      icon: (
+                        <img
+                          src={github}
+                          alt="GitHub"
+                          className="w-full h-full"
+                        />
+                      ),
+                    },
+                    {
+                      icon: (
+                        <img
+                          src={twitter}
+                          alt="Twitter"
+                          className="w-full h-full"
+                        />
+                      ),
+                    },
+                  ].map((s, i) => (
+                    <motion.a
+                      key={i}
+                      href="#"
+                      whileHover={{ scale: 1.15 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="text-white rounded-full p-2 w-8 h-8 bg-[#00000070]  hover:text-white transition-colors"
+                    >
+                      {s.icon}
+                    </motion.a>
+                  ))}
+                </div>
               </motion.div>
-            ))}
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.3 }}
+              className="flex-1 rounded-2xl p-5 sm:p-6 md:p-7 backdrop-blur-[23px]"
+            >
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                <div>
+                  <label className="block text-xs sm:text-sm text-gray-300 mb-1.5">
+                    Your Name <span className="text-white">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Enter your name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="w-full  px-3 sm:px-4 py-2.5 sm:py-5 text-white text-xs sm:text-sm outline-none focus:border-purple-500 transition-colors bg-[#000000B8]"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs sm:text-sm text-gray-300 mb-1.5">
+                    Email Address <span className="text-white">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full  px-3 sm:px-4 py-2.5 sm:py-5 text-white text-xs sm:text-sm outline-none focus:border-purple-500 transition-colors bg-[#000000B8]"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs sm:text-sm text-gray-300 mb-1.5">
+                    Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    placeholder="Enter your phone number"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    className="w-full  px-3 sm:px-4 py-2.5 sm:py-5 text-white text-xs sm:text-sm outline-none focus:border-purple-500 transition-colors bg-[#000000B8]"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs sm:text-sm text-gray-300 mb-1.5">
+                    Project Type <span className="text-white">*</span>
+                  </label>
+                  <CustomDropdown
+                    placeholder="Select Type"
+                    value={formData.projectType}
+                    onChange={(val) =>
+                      setFormData({ ...formData, projectType: val })
+                    }
+                    options={[
+                      { label: "Website Development", value: "website" },
+                      { label: "App Development", value: "app" },
+                      { label: "Website + App Combo", value: "combo" },
+                      { label: "Other", value: "other" },
+                    ]}
+                  />
+                </div>
+                <div className="sm:col-span-2">
+                  <label className="block text-xs sm:text-sm text-gray-300 mb-1.5">
+                    Budget Range
+                  </label>
+                  <CustomDropdown
+                    placeholder="Select Budget"
+                    value={formData.budget}
+                    onChange={(val) =>
+                      setFormData({ ...formData, budget: val })
+                    }
+                    options={[
+                      { label: "₹8,000 - ₹15,000", value: "8k-15k" },
+                      { label: "₹15,000 - ₹30,000", value: "15k-30k" },
+                      { label: "₹30,000 - ₹70,000", value: "30k-70k" },
+                      { label: "₹70,000+", value: "70k+" },
+                    ]}
+                  />
+                </div>
+                <div className="sm:col-span-2">
+                  <label className="block text-xs sm:text-sm text-gray-300 mb-1.5">
+                    Project Details <span className="text-white">*</span>
+                  </label>
+                  <textarea
+                    name="details"
+                    placeholder="Tell us about your project..."
+                    value={formData.details}
+                    onChange={handleChange}
+                    rows={4}
+                    className="w-full  px-3 sm:px-4 py-2.5 sm:py-5 text-white text-xs sm:text-sm outline-none focus:border-purple-500 transition-colors resize-none bg-[#000000B8]"
+                  />
+                </div>
+              </div>
+              <motion.button
+                whileHover={{ scale: 1.02, opacity: 0.9 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={handleSubmit}
+                className="mt-4 sm:mt-5 w-full py-3 sm:py-5 rounded-full font-semibold text-white text-sm sm:text-base bg-[#000000B8] transition-opacity"
+              >
+                Send Message
+              </motion.button>
+            </motion.div>
           </div>
+        </div>
+      </div>
+
+      <div className="max-w-6xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 pt-16 sm:pt-20 md:pt-24 pb-16 sm:pb-20">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="mb-10 sm:mb-14 md:mb-16"
+        >
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-none tracking-tight">
+            Frequently Asked
+            <br />
+            Questions
+          </h2>
         </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 lg:gap-x-16 gap-y-0">
+          <div>
+            {leftFaqs.map((faq, index) => {
+              const globalIndex = index * 2;
+              return (
+                <motion.div
+                  key={globalIndex}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.08 }}
+                  className="border-b border-blue-600/60 py-3 sm:py-4 md:py-5"
+                >
+                  <motion.button
+                    whileHover={{ x: 3 }}
+                    whileTap={{ scale: 0.99 }}
+                    onClick={() =>
+                      setOpenFaq(openFaq === globalIndex ? null : globalIndex)
+                    }
+                    className="flex items-center justify-between w-full text-left"
+                  >
+                    <span className="text-xs sm:text-sm md:text-base text-gray-300 pr-4">
+                      {faq.question}
+                    </span>
+                    <motion.span
+                      animate={{ rotate: openFaq === globalIndex ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="text-lg sm:text-xl text-gray-400 flex-shrink-0"
+                    >
+                      {openFaq === globalIndex ? "−" : "+"}
+                    </motion.span>
+                  </motion.button>
+                  <AnimatePresence>
+                    {openFaq === globalIndex && (
+                      <motion.p
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="text-xs sm:text-sm text-gray-500 mt-2 sm:mt-3 overflow-hidden"
+                      >
+                        {faq.answer}
+                      </motion.p>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              );
+            })}
+          </div>
+          <div>
+            {rightFaqs.map((faq, index) => {
+              const globalIndex = index * 2 + 1;
+              return (
+                <motion.div
+                  key={globalIndex}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.08 }}
+                  className="border-b border-blue-600/60 py-3 sm:py-4 md:py-5"
+                >
+                  <motion.button
+                    whileHover={{ x: 3 }}
+                    whileTap={{ scale: 0.99 }}
+                    onClick={() =>
+                      setOpenFaq(openFaq === globalIndex ? null : globalIndex)
+                    }
+                    className="flex items-center justify-between w-full text-left"
+                  >
+                    <span className="text-xs sm:text-sm md:text-base text-gray-300 pr-4">
+                      {faq.question}
+                    </span>
+                    <motion.span
+                      animate={{ rotate: openFaq === globalIndex ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="text-lg sm:text-xl text-gray-400 flex-shrink-0"
+                    >
+                      {openFaq === globalIndex ? "−" : "+"}
+                    </motion.span>
+                  </motion.button>
+                  <AnimatePresence>
+                    {openFaq === globalIndex && (
+                      <motion.p
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="text-xs sm:text-sm text-gray-500 mt-2 sm:mt-3 overflow-hidden"
+                      >
+                        {faq.answer}
+                      </motion.p>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </div>
   );
-}
+};
+
+export default Contact;
