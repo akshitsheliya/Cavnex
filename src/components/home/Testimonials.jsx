@@ -2,10 +2,8 @@ import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, FreeMode } from "swiper/modules";
-
 import "swiper/css";
 import "swiper/css/free-mode";
-import CavnexReveal from "./CavnexReveal";
 
 const testimonials = [
   {
