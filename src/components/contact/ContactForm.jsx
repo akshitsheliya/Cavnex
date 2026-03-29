@@ -68,7 +68,7 @@ export default function ContactForm() {
             onChange={handleChange}
             required
             className={inputClasses}
-            placeholder="john@example.com"
+            placeholder="name@example.com"
           />
         </div>
       </div>

@@ -8,7 +8,7 @@ const sections = [
     content: [
       {
         type: "text",
-        value: `These Terms of Service ("Terms") constitute a legally binding agreement between Cavnex ("Company", "We", "Our", "Us") and you ("You", "Client", or "User"). By engaging our software development, web development, or mobile app development services, or by accessing our website at cavnex.com, you agree to be fully bound by these Terms.`,
+        value: `These Terms of Service ("Terms") constitute a legally binding agreement between Cavnex ("Company", "We", "Our", "Us") and you ("You", "Client", or "User"). By engaging our software development, web development, or mobile app development services, or by accessing our website at cavnex.in, you agree to be fully bound by these Terms.`,
       },
       {
         type: "text",
@@ -70,7 +70,7 @@ const sections = [
       },
       {
         type: "text",
-        value: `Refund requests for services not yet rendered will be considered on a case-by-case basis. Please contact us at info@cavnex.com to discuss your situation.`,
+        value: `Refund requests for services not yet rendered will be considered on a case-by-case basis. Please contact us at info@cavnex.in to discuss your situation.`,
       },
     ],
   },
@@ -274,7 +274,7 @@ const sections = [
       },
       {
         type: "text",
-        value: `Email: info@cavnex.com\nPhone: +91 91575 00298\nAddress: Gujarat, India`,
+        value: `Email: info@cavnex.in\nPhone: +91 91575 00298\nAddress: Gujarat, India`,
       },
     ],
   },

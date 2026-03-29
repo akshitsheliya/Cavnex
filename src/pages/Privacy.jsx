@@ -6,7 +6,7 @@ const sections = [
     id: 1,
     title: "Introduction",
     content: [
-      `Welcome to Cavnex ("Company", "we", "our", "us"). This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website cavnex.com or engage our software and web development services (collectively, the "Service").`,
+      `Welcome to Cavnex ("Company", "we", "our", "us"). This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website cavnex.in or engage our software and web development services (collectively, the "Service").`,
       `By accessing or using our Service, you acknowledge that you have read, understood, and agree to the data practices described in this Privacy Policy. If you do not agree, please do not access or use our Service.`,
       `We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new policy on this page with an updated effective date.`,
     ],
@@ -71,7 +71,7 @@ const sections = [
     content: [
       `We retain your personal information only for as long as necessary to fulfill the purposes outlined in this Privacy Policy, comply with legal obligations, resolve disputes, and enforce our agreements.`,
       `Client project records, including communications, invoices, and deliverable documentation, may be retained for up to 5 years after project completion for accounting, legal, and reference purposes.`,
-      `You may request deletion of your personal data at any time by contacting us at info@cavnex.com. We will process your request within 30 days, subject to any legal obligations that require us to retain certain records.`,
+      `You may request deletion of your personal data at any time by contacting us at info@cavnex.in. We will process your request within 30 days, subject to any legal obligations that require us to retain certain records.`,
     ],
   },
   {
@@ -79,7 +79,7 @@ const sections = [
     title: "Your Rights",
     content: [
       `You have the right to access the personal information we hold about you and to request a copy of it. You also have the right to request correction of inaccurate data or deletion of your data, subject to our legal retention obligations.`,
-      `You have the right to opt out of receiving marketing communications from us at any time by clicking the unsubscribe link in any email we send or by contacting us directly at info@cavnex.com.`,
+      `You have the right to opt out of receiving marketing communications from us at any time by clicking the unsubscribe link in any email we send or by contacting us directly at info@cavnex.in.`,
       `If you believe we have not complied with your data rights, you have the right to lodge a complaint with the appropriate data protection authority in your jurisdiction.`,
     ],
   },
@@ -103,7 +103,7 @@ const sections = [
     title: "Contact Us",
     content: [
       `If you have any questions, concerns, or requests regarding this Privacy Policy or how we handle your data, please contact us at:`,
-      `Email: info@cavnex.com\nPhone: +91 91575 00298\nAddress: Gujarat, India`,
+      `Email: info@cavnex.in\nPhone: +91 91575 00298\nAddress: Gujarat, India`,
     ],
   },
 ];

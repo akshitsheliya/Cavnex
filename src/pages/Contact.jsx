@@ -326,8 +326,8 @@ ${formData.details || "No additional details provided"}
                       />
                     ),
                     label: "Email",
-                    value: "connect@cavnex.com",
-                    link: "mailto:connect@cavnex.com",
+                    value: "connect@cavnex.in",
+                    link: "mailto:connect@cavnex.in",
                   },
                   {
                     icon: (

@@ -46,7 +46,7 @@ export default function Footer() {
             <div className="flex items-center gap-2.5 mb-4 sm:mb-5">
               <img
                 src={cavnex_full}
-                alt="Cavnex"
+                alt="CavNex"
                 className="h-6 sm:h-7 md:h-8 w-auto object-contain"
               />
             </div>
@@ -115,7 +115,7 @@ export default function Footer() {
               <li className="flex items-center gap-2 sm:gap-3">
                 <HiMail className="w-4 h-4 text-white flex-shrink-0" />
                 <span className="text-gray-400 text-xs sm:text-sm leading-none">
-                  info@cavnex.com
+                  info@cavnex.in
                 </span>
               </li>
               <li className="flex items-center gap-2 sm:gap-3">

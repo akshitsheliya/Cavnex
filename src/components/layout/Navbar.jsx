@@ -71,7 +71,7 @@ const Navbar = () => {
               <Link to="/" className="flex items-center gap-2.5 relative z-50">
                 <motion.img
                   src={cavnex_full}
-                  alt="Cavnex"
+                  alt="CavNex"
                   className="h-6 sm:h-7 md:h-8 w-auto object-contain"
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
