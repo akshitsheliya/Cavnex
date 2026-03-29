@@ -46,7 +46,7 @@ export default function Footer() {
             <div className="flex items-center gap-2.5 mb-4 sm:mb-5">
               <img
                 src={cavnex_full}
-                alt="CavNex"
+                alt="Cavnex"
                 className="h-6 sm:h-7 md:h-8 w-auto object-contain"
               />
             </div>

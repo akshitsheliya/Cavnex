@@ -7,7 +7,7 @@ export const testimonials = [
     image:
       "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&q=80",
     rating: 5,
-    text: "CavNex info Tech transformed my cafe business with a stunning website. Online orders increased by 150%! Highly recommended.",
+    text: "Cavnex info Tech transformed my cafe business with a stunning website. Online orders increased by 150%! Highly recommended.",
   },
   {
     id: 2,

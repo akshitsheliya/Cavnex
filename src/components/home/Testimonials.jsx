@@ -23,7 +23,7 @@ const testimonials = [
   },
   {
     id: 4,
-    text: "Working with CavNex was a game changer for our business. The website they built looks stunning and performs even better.",
+    text: "Working with Cavnex info Tech was a game changer for our business. The website they built looks stunning and performs even better.",
     name: "A Patel",
   },
   {
