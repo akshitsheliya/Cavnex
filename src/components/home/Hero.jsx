@@ -45,8 +45,8 @@ export default function Hero() {
                 </motion.div>
               </div>
               <p className="text-gray-400 text-sm sm:text-base leading-relaxed">
-                We help companies design their products to be ready for Digital
-                world
+                We help companies design their products to be ready for the
+                Digital world
               </p>
             </motion.div>
           </div>

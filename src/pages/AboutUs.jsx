@@ -171,8 +171,8 @@ const AboutUs = () => {
               , not just a vendor.
             </p>
             <p>
-              So we built Cavnex — a full-service software and web development
-              studio that combines{" "}
+              So we built Cavnex info Tech — a full-service software and web
+              development company that combines{" "}
               <strong className="text-white">
                 technical excellence with genuine care
               </strong>{" "}

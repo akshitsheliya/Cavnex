@@ -6,7 +6,7 @@ import cavnex_full from "../../assets/cavnex_logo/cavnex_full.svg";
 export default function Footer() {
   const solutions = [
     { name: "Website Development", path: "/services/website" },
-    { name: "App Development ", path: "/services/app" },
+    { name: "App Development", path: "/services/app" },
     { name: "Website + App Combo", path: "/services/combo" },
     { name: "Our Portfolio", path: "/projects" },
   ];

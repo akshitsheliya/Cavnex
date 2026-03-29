@@ -32,7 +32,7 @@ export default function ValueSection() {
       number: "05",
       title: "Responsive",
       description:
-        "perfect experiance on all devices - desktop, tablet, and mobile. fully responsive designs.",
+        "Perfect experience on all devices - desktop, tablet, and mobile. Fully responsive designs.",
     },
     {
       number: "06",

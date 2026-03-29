@@ -240,7 +240,7 @@ const sections = [
     content: [
       {
         type: "text",
-        value: `These Terms shall be governed by and construed in accordance with the laws of India. Any disputes arising from or in connection with these Terms shall be subject to the exclusive jurisdiction of the courts in Mumbai, Maharashtra, India.`,
+        value: `These Terms shall be governed by and construed in accordance with the laws of India. Any disputes arising from or in connection with these Terms shall be subject to the exclusive jurisdiction of the courts in Suart, Gujarat, India.`,
       },
     ],
   },

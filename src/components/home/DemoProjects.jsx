@@ -35,7 +35,7 @@ export default function DemoProjects() {
 
             <motion.div className="md:row-span-1 rounded-2xl bg-[#111] p-5 flex flex-col justify-center min-h-0">
               <p className="text-white text-2xl sm:text-4xl md:text-6xl font-semibold mb-2 capitalize">
-                How we design web-sites
+                How we design websites
               </p>
               <Link
                 to="/projects"

@@ -101,9 +101,9 @@ export default function Testimonials() {
         .testimonial-card {
           transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
-        .testimonial-card:hover {
-          transform: scale(1.03) translateY(-8px);
-        }
+        // .testimonial-card:hover {
+        //   transform: scale(1.03) translateY(-8px);
+        // }
         .testimonial-card:hover .card-glow {
           opacity: 1;
           background: linear-gradient(135deg, rgba(45,212,191,0.12) 0%, rgba(59,130,246,0.08) 50%, rgba(139,92,246,0.06) 100%);

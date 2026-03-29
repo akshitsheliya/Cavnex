@@ -362,7 +362,7 @@ ${formData.details || "No additional details provided"}
                       />
                     ),
                     label: "Location",
-                    value: "Mumbai, India",
+                    value: "Gujarat, India",
                   },
                 ].map((item, i) => {
                   const Wrapper = item.link ? motion.a : motion.div;
