@@ -13,8 +13,8 @@ export default function Footer() {
 
   const company = [
     { name: "About Us", path: "/about-us" },
-    { name: "Privacy", path: "/privacy" },
-    { name: "Terms", path: "/terms" },
+    // { name: "Privacy", path: "/privacy" },
+    // { name: "Terms", path: "/terms" },
     { name: "Projects", path: "/projects" },
     { name: "Contact", path: "/contact" },
   ];
@@ -140,10 +140,16 @@ export default function Footer() {
               © 2026 Cavnex info Tech. All rights reserved.
             </p>
             <div className="flex space-x-4 sm:space-x-6 text-[10px] sm:text-xs md:text-sm text-gray-400 order-1 sm:order-2">
-              <a href="#" className="hover:text-primary-400 transition-colors">
+              <a
+                href="/privacy"
+                className="hover:text-primary-400 transition-colors"
+              >
                 Privacy Policy
               </a>
-              <a href="#" className="hover:text-primary-400 transition-colors">
+              <a
+                href="/terms"
+                className="hover:text-primary-400 transition-colors"
+              >
                 Terms of Service
               </a>
             </div>
