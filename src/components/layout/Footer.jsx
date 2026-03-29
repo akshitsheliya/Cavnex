@@ -5,25 +5,37 @@ import cavnex_full from "../../assets/cavnex_logo/cavnex_full.svg";
 
 export default function Footer() {
   const solutions = [
-    { name: "Self-hosted", path: "/services/website" },
-    { name: "SaaS Hosting", path: "/services/app" },
-    { name: "Platform", path: "/services/combo" },
-    { name: "Desktop App", path: "/services" },
+    { name: "Website Development", path: "/services/website" },
+    { name: "App Development ", path: "/services/app" },
+    { name: "Website + App Combo", path: "/services/combo" },
+    { name: "Our Portfolio", path: "/projects" },
   ];
 
   const company = [
-    { name: "About Us", path: "/community" },
-    { name: "Privacy", path: "#" },
-    { name: "Terms", path: "#" },
+    { name: "About Us", path: "/about-us" },
+    { name: "Privacy", path: "/privacy" },
+    { name: "Terms", path: "/terms" },
     { name: "Projects", path: "/projects" },
     { name: "Contact", path: "/contact" },
   ];
 
   const social = [
-    { name: "Twitter", icon: FaTwitter, url: "#" },
-    { name: "Instagram", icon: FaInstagram, url: "#" },
-    { name: "GitHub", icon: FaGithub, url: "#" },
-    { name: "LinkedIn", icon: FaLinkedinIn, url: "#" },
+    // { name: "Twitter", icon: FaTwitter, url: "#" },
+    {
+      name: "Instagram",
+      icon: FaInstagram,
+      url: "https://www.instagram.com/cavnex",
+    },
+    {
+      name: "LinkedIn",
+      icon: FaLinkedinIn,
+      url: "https://www.linkedin.com/in/cavnex",
+    },
+    {
+      name: "GitHub",
+      icon: FaGithub,
+      url: "https://github.com/Cavnex-info-Tech",
+    },
   ];
 
   return (
@@ -49,6 +61,7 @@ export default function Footer() {
                 <a
                   key={item.name}
                   href={item.url}
+                  target="_blank"
                   aria-label={item.name}
                   className="text-white hover:text-gray-300 transition-colors duration-200"
                 >

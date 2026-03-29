@@ -13,6 +13,9 @@ import Projects from "./pages/Projects";
 import Community from "./pages/Community";
 import Contact from "./pages/Contact";
 import { AnimatePresence, motion } from "framer-motion";
+import Privacy from "./pages/Privacy";
+import AboutUs from "./pages/AboutUs";
+import Terms from "./pages/Terms";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -61,6 +64,9 @@ function App() {
                 <Route path="/projects" element={<Projects />} />
                 <Route path="/community" element={<Community />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/terms" element={<Terms />} />
+                <Route path="/privacy" element={<Privacy />} />
+                <Route path="/about-us" element={<AboutUs />} />
               </Routes>
             </main>
             <Footer />

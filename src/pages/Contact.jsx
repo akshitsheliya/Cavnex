@@ -5,7 +5,7 @@ import emailIcon from "../assets/contact/mail.svg";
 import phoneIcon from "../assets/contact/phone.svg";
 import mapIcon from "../assets/contact/map.svg";
 import msgIcon from "../assets/contact/msg.svg";
-import abstract from "../assets/abstract.svg";
+import bgvideo from "../assets/bg.mp4";
 import instagram from "../assets/contact/insta.svg";
 import github from "../assets/contact/git.svg";
 import linkedin from "../assets/contact/in.svg";
@@ -67,9 +67,27 @@ const Contact = () => {
   const [error, setError] = useState("");
   const [fieldErrors, setFieldErrors] = useState({});
   const [recaptchaToken, setRecaptchaToken] = useState(null);
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
   const recaptchaRef = useRef(null);
   const formRef = useRef(null);
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const handleTimeUpdate = () => {
+      // 0.05 seconds before end, smoothly restart
+      if (video.duration - video.currentTime < 0.05) {
+        video.currentTime = 0;
+        video.play();
+      }
+    };
+
+    video.addEventListener("timeupdate", handleTimeUpdate);
+    return () => video.removeEventListener("timeupdate", handleTimeUpdate);
+  }, []);
 
   useEffect(() => {
     if (success) {
@@ -266,16 +284,31 @@ ${formData.details || "No additional details provided"}
       </div>
 
       <div className="relative w-full overflow-hidden min-h-[600px] xs:min-h-[580px] sm:min-h-[350px] md:min-h-[420px] lg:min-h-[420px]">
-        <img src={abstract} alt="" className="absolute inset-0 w-full h-full" />
-        <div
-          className="absolute"
+        <video
+          ref={videoRef}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          onLoadedData={() => setIsVideoLoaded(true)}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+            isVideoLoaded ? "opacity-100" : "opacity-0"
+          }`}
           style={{
-            top: "10%",
-            left: "25%",
-            right: "0",
-            bottom: "0",
+            willChange: "transform",
+          }}
+        >
+          <source src={bgvideo} type="video/mp4" />
+        </video>
+
+        <div className="absolute inset-0 bg-black/30" />
+
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
             background:
-              "repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(0,255,200,0.03) 2px, rgba(0,255,200,0.03) 4px)",
+              "repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(0,255,200,0.02) 2px, rgba(0,255,200,0.02) 4px)",
           }}
         />
 
@@ -653,7 +686,6 @@ ${formData.details || "No additional details provided"}
                   </div>
                 </div>
 
-                {/* reCAPTCHA */}
                 <div className="flex justify-center">
                   <ReCAPTCHA
                     ref={recaptchaRef}
@@ -674,7 +706,7 @@ ${formData.details || "No additional details provided"}
                   className={`w-full py-2.5 xs:py-3 sm:py-5 rounded-full font-semibold text-white text-xs xs:text-sm sm:text-base transition-all ${
                     loading || success
                       ? "bg-gray-600 cursor-not-allowed"
-                      : "bg-[#000000B8] hover:bg-[#00000090]"
+                      : "bg-[#272525] hover:bg-[#7a7a7a90]"
                   }`}
                 >
                   {loading ? (
@@ -722,7 +754,6 @@ ${formData.details || "No additional details provided"}
                   )}
                 </motion.button>
 
-                {/* Privacy Note */}
                 <p className="text-center text-gray-500 text-[10px] xs:text-xs">
                   By submitting this form, you agree to our{" "}
                   <a
@@ -738,7 +769,6 @@ ${formData.details || "No additional details provided"}
         </div>
       </div>
 
-      {/* FAQ Section */}
       <div className="max-w-6xl mx-auto px-4 xs:px-5 sm:px-4 md:px-6 lg:px-8 pt-10 xs:pt-12 sm:pt-20 md:pt-24 pb-10 xs:pb-12 sm:pb-20">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
